@@ -257,38 +257,31 @@ renderBets(filtered);
 }
 
 document.addEventListener(
-"DOMContentLoaded",
-() => {
+    "DOMContentLoaded",
+    () => {
 
-    loadData();
+        loadData();
 
-    document
-    .getElementById(
-        "marketFilter"
-    )
-    .addEventListener(
-        "change",
-        applyFilters
-    );
+        document
+        .getElementById("marketFilter")
+        .addEventListener(
+            "change",
+            applyFilters
+        );
 
-    document
-    .getElementById(
-        "resultFilter"
-    )
-    .addEventListener(
-        "change",
-        applyFilters
-    );
+        document
+        .getElementById("resultFilter")
+        .addEventListener(
+            "change",
+            applyFilters
+        );
 
-    document
-    .getElementById(
-        "searchTeam"
-    )
-    .addEventListener(
-        "input",
-        applyFilters
-    );
+        document
+        .getElementById("searchTeam")
+        .addEventListener(
+            "input",
+            applyFilters
+        );
 
-}
-
+    }
 );
