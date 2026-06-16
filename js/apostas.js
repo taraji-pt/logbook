@@ -161,8 +161,7 @@ container.innerHTML =
 
 <div class="bet-score">
 
-    Score:
-    ${tip.score || "-"}
+    FT: ${tip.score || "-"}
 
 </div>
 
