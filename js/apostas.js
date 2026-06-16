@@ -181,9 +181,13 @@ container.innerHTML =
                         ${profit.toFixed(2)}€
                     </span>
 
-                    <span>
-                        ${tip.result}
-                    </span>
+<span class="result-badge result-${
+    String(tip.result)
+    .toLowerCase()
+    .replace(" ","")
+}">
+    ${tip.result}
+</span>
 
                 </div>
 
