@@ -1,0 +1,326 @@
+:root{
+--bg:#0f172a;
+--sidebar:#111827;
+--panel:#1e293b;
+--panel-hover:#263548;
+--border:#334155;
+--text:#f8fafc;
+--muted:#94a3b8;
+--green:#22c55e;
+--red:#ef4444;
+--blue:#3b82f6;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+.app{
+display:flex;
+min-height:100vh;
+}
+
+.sidebar{
+width:260px;
+background:var(--sidebar);
+border-right:1px solid var(--border);
+padding:25px;
+position:fixed;
+top:0;
+bottom:0;
+left:0;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:20px;
+}
+
+.logo-icon{
+font-size:28px;
+}
+
+.logo-title{
+font-weight:800;
+font-size:15px;
+}
+
+.logo-subtitle{
+color:var(--muted);
+font-size:12px;
+}
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.menu-item{
+color:var(--muted);
+text-decoration:none;
+padding:12px 15px;
+border-radius:10px;
+transition:0.2s;
+}
+
+.menu-item:hover{
+background:var(--panel);
+color:white;
+}
+
+.menu-item.active{
+background:var(--blue);
+color:white;
+}
+
+.main{
+margin-left:260px;
+width:100%;
+padding:30px;
+}
+
+.page-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.page-header h1{
+font-size:24px;
+font-weight:800;
+}
+
+.page-header p{
+color:var(--muted);
+margin-top:5px;
+}
+
+.currency-badge{
+background:var(--panel);
+border:1px solid var(--border);
+padding:10px 16px;
+border-radius:999px;
+font-weight:700;
+}
+
+.kpi-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:10px;
+margin-bottom:10px;
+}
+
+.kpi-card{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:18px;
+padding:22px;
+transition:0.2s;
+}
+
+.kpi-card:hover{
+background:var(--panel-hover);
+}
+
+.kpi-label{
+color:var(--muted);
+font-size:13px;
+margin-bottom:10px;
+}
+
+.kpi-value{
+font-size:30px;
+font-weight:800;
+}
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:10px;
+margin-bottom:10px;
+}
+
+.panel{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:18px;
+padding:20px;
+}
+
+.panel-title{
+font-size:18px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.placeholder{
+color:var(--muted);
+}
+
+#bankrollChart{
+height:350px !important;
+}
+
+.bet-row{
+padding:12px 0;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.bet-row:last-child{
+border-bottom:none;
+}
+
+.bet-match{
+    font-weight:600;
+}
+
+.fi{
+    margin:0 6px;
+    vertical-align:middle;
+}
+
+.bet-match .fi{
+    margin:0 6px;
+    vertical-align:middle;
+}
+
+.bet-market{
+color:var(--muted);
+font-size:12px;
+}
+
+.bet-profit-win{
+color:var(--green);
+font-weight:700;
+}
+
+.bet-profit-loss{
+color:var(--red);
+font-weight:700;
+}
+
+.team-row{
+display:flex;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.team-row:last-child{
+border-bottom:none;
+}
+
+canvas{
+max-width:100%;
+}
+
+.fi{
+    margin-right:6px;
+    vertical-align:middle;
+}
+
+@media(max-width:1000px){
+
+```
+.sidebar{
+    width:100%;
+    position:relative;
+    height:auto;
+}
+
+.main{
+    margin-left:0;
+}
+
+.app{
+    flex-direction:column;
+}
+
+.dashboard-grid{
+    grid-template-columns:1fr;
+}
+```
+
+}
+
+.positive{
+    color:#22c55e;
+}
+
+.negative{
+    color:#ef4444;
+}
+
+.neutral{
+    color:#60a5fa;
+}
+
+.filters{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.filters select,
+.filters input{
+
+    background:var(--panel);
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+    padding:10px 14px;
+
+    border-radius:10px;
+}
+
+.bets-container{
+    margin-top:20px;
+}
+
+.bet-card{
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:12px;
+}
+
+.bet-card-header{
+
+    font-size:18px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+}
+
+.bet-card-footer{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    color:var(--muted);
+
+    margin-top:10px;
+}

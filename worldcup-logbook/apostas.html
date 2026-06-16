@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Apostas</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">⚽</div>
+
+        <div>
+
+            <div class="logo-title">
+                WORLD CUP
+            </div>
+
+            <div class="logo-subtitle">
+                BETTING LOGBOOK
+            </div>
+
+        </div>
+
+    </div>
+
+    <nav class="menu">
+
+        <a href="index.html" class="menu-item">
+            Dashboard
+        </a>
+
+        <a href="apostas.html" class="menu-item active">
+            Apostas
+        </a>
+
+        <a href="mercados.html" class="menu-item">
+            Mercados
+        </a>
+
+        <a href="estatisticas.html" class="menu-item">
+            Estatísticas
+        </a>
+
+        <a href="bankroll.html" class="menu-item">
+            Bankroll
+        </a>
+
+    </nav>
+
+</aside>
+
+<main class="main">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Apostas
+            </h1>
+
+            <p>
+                Histórico completo
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <div class="filters">
+
+            <select id="marketFilter">
+
+                <option value="">
+                    Todos os Mercados
+                </option>
+
+            </select>
+
+            <select id="resultFilter">
+
+                <option value="">
+                    Todos os Resultados
+                </option>
+
+                <option value="WIN">
+                    WIN
+                </option>
+
+                <option value="LOSS">
+                    LOSS
+                </option>
+
+                <option value="HALF WIN">
+                    HALF WIN
+                </option>
+
+                <option value="HALF LOSS">
+                    HALF LOSS
+                </option>
+
+                <option value="VOID">
+                    VOID
+                </option>
+
+            </select>
+
+            <input
+                type="text"
+                id="searchTeam"
+                placeholder="Pesquisar equipa..."
+            >
+
+        </div>
+
+    </div>
+
+    <div
+        id="betsContainer"
+        class="bets-container"
+    >
+
+    </div>
+
+</main>
+
+
+</div>
+
+<script src="js/apostas.js"></script>
+
+</body>
+
+</html>
