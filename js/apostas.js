@@ -28,18 +28,26 @@ switch((result || "").toUpperCase()){
 
 }
 
+function getFlag(code){
+
+    if(code === "np"){
+        return "🏳️";
+    }
+
+    return `<span class="fi fi-${code}"></span>`;
+}
+
 function matchWithFlags(homeCode, home, awayCode, away){
 
-return `
-    <span class="fi fi-${homeCode}"></span>
-    ${home}
+    return `
+        ${getFlag(homeCode)}
+        ${home}
 
-    vs
+        vs
 
-    ${away}
-    <span class="fi fi-${awayCode}"></span>
-`;
-
+        ${away}
+        ${getFlag(awayCode)}
+    `;
 }
 
 async function loadData(){
