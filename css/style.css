@@ -212,6 +212,17 @@ border-bottom:none;
     gap:10px;
 }
 
+.bet-score{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    font-weight:500;
+}
+
 .bet-profit-win{
 color:var(--green);
 font-weight:700;
