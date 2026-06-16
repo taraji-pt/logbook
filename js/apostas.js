@@ -346,5 +346,14 @@ document.addEventListener(
             applyFilters
         );
 
+        document
+.getElementById(
+    "sortFilter"
+)
+.addEventListener(
+    "change",
+    applyFilters
+);
+
     }
 );
