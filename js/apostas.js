@@ -153,11 +153,18 @@ container.innerHTML =
 
                 </div>
 
-                <div class="bet-market">
+<div class="bet-market">
 
-                    ${tip.market}
+    ${tip.market}
 
-                </div>
+</div>
+
+<div class="bet-score">
+
+    Score:
+    ${tip.score || "-"}
+
+</div>
 
                 <div class="bet-card-footer">
 
