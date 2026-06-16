@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>World Cup Betting Logbook</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="app">
+
+```
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">⚽</div>
+
+        <div>
+
+            <div class="logo-title">
+                WORLD CUP
+            </div>
+
+            <div class="logo-subtitle">
+                BETTING LOGBOOK
+            </div>
+
+        </div>
+
+    </div>
+
+    <nav class="menu">
+
+        <a href="#" class="menu-item active">
+            Dashboard
+        </a>
+
+        <a href="apostas.html" class="menu-item">
+            Apostas
+        </a>
+
+        <a href="mercados.html" class="menu-item">
+            Mercados
+        </a>
+
+        <a href="estatisticas.html" class="menu-item">
+            Estatísticas
+        </a>
+
+        <a href="bankroll.html" class="menu-item">
+            Bankroll
+        </a>
+
+
+
+    </nav>
+
+</aside>
+
+<main class="main">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 id="page-title">
+                Dashboard
+            </h1>
+
+            <p id="page-subtitle">
+                Mundial 2026
+            </p>
+
+        </div>
+
+        <div class="currency-badge"
+             id="currencyBadge">
+            EUR
+        </div>
+
+    </div>
+
+    <section id="dashboardView">
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Bankroll Atual
+                </div>
+
+                <div class="kpi-value"
+                     id="bankrollCurrent">
+                    --
+                </div>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Lucro Líquido
+                </div>
+
+                <div class="kpi-value"
+                     id="netProfit">
+                    --
+                </div>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    ROI
+                </div>
+
+                <div class="kpi-value"
+                     id="roi">
+                    --
+                </div>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Yield
+                </div>
+
+                <div class="kpi-value"
+                     id="yield">
+                    --
+                </div>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Win Rate
+                </div>
+
+                <div class="kpi-value"
+                     id="winRate">
+                    --
+                </div>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    Nº Apostas
+                </div>
+
+                <div class="kpi-value"
+                     id="betCount">
+                    --
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="panel">
+
+                <div class="panel-title">
+                    Evolução da Banca
+                </div>
+
+                <canvas id="bankrollChart"></canvas>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-title">
+                    Últimas Apostas
+                </div>
+
+                <div id="latestBets">
+
+                    <div class="placeholder">
+                        A carregar...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-title">
+                Mercados Mais Lucrativos
+            </div>
+
+            <div id="topTeams">
+
+                <div class="placeholder">
+                    A carregar...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
