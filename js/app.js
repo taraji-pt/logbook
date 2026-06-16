@@ -236,9 +236,21 @@ container.innerHTML = latest.map(tip => {
     )}
 </div>
 
-            <div class="bet-market">
-                ${tip.market}
-            </div>
+<div class="bet-market">
+
+    ${tip.market}
+
+    <span class="result-badge result-${
+        String(tip.result)
+        .toLowerCase()
+        .replace(" ","")
+    }">
+
+        ${tip.result}
+
+    </span>
+
+</div>
 
         </div>
     `;
