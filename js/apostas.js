@@ -217,8 +217,71 @@ const search =
     .value
     .toLowerCase();
 
+const sort =
+    document.getElementById(
+        "sortFilter"
+    ).value;
+
 const filtered =
     allTips.filter(tip => {
+
+  filtered.sort((a,b) => {
+
+    if(sort === "date_desc")
+        return new Date(b.date) - new Date(a.date);
+
+    if(sort === "date_asc")
+        return new Date(a.date) - new Date(b.date);
+
+    if(sort === "odd_desc")
+        return Number(b.odd) - Number(a.odd);
+
+    if(sort === "odd_asc")
+        return Number(a.odd) - Number(b.odd);
+
+    if(sort === "profit_desc"){
+
+        const pa =
+            calculateProfit(
+                Number(a.stake_eur),
+                Number(a.odd),
+                a.result
+            );
+
+        const pb =
+            calculateProfit(
+                Number(b.stake_eur),
+                Number(b.odd),
+                b.result
+            );
+
+        return pb - pa;
+
+    }
+
+    if(sort === "profit_asc"){
+
+        const pa =
+            calculateProfit(
+                Number(a.stake_eur),
+                Number(a.odd),
+                a.result
+            );
+
+        const pb =
+            calculateProfit(
+                Number(b.stake_eur),
+                Number(b.odd),
+                b.result
+            );
+
+        return pa - pb;
+
+    }
+
+    return 0;
+
+});      
 
         const marketMatch =
             !market ||
