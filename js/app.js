@@ -2,18 +2,26 @@ const API_URL = "https://script.google.com/macros/s/AKfycbxsfosGPvNCUmTeJRTbfvhx
 
 let bankrollChart = null;
 
+function getFlag(code){
+
+    if(code === "np"){
+        return "🏳️";
+    }
+
+    return `<span class="fi fi-${code}"></span>`;
+}
+
 function matchWithFlags(homeCode, home, awayCode, away){
 
     return `
-        <span class="fi fi-${homeCode}"></span>
+        ${getFlag(homeCode)}
         ${home}
 
         vs
 
         ${away}
-        <span class="fi fi-${awayCode}"></span>
+        ${getFlag(awayCode)}
     `;
-
 }
 
 function calculateProfit(stake, odd, result) {
