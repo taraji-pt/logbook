@@ -225,7 +225,39 @@ const sort =
 const filtered =
     allTips.filter(tip => {
 
-  filtered.sort((a,b) => {
+        const marketMatch =
+            !market ||
+            tip.market === market;
+
+        const resultMatch =
+            !result ||
+            tip.result === result;
+
+        const teamMatch =
+
+            !search ||
+
+            tip.home
+            .toLowerCase()
+            .includes(search)
+
+            ||
+
+            tip.away
+            .toLowerCase()
+            .includes(search);
+
+        return (
+
+            marketMatch &&
+            resultMatch &&
+            teamMatch
+
+        );
+
+    });
+
+filtered.sort((a,b) => {
 
     if(sort === "date_desc")
         return new Date(b.date) - new Date(a.date);
@@ -281,39 +313,7 @@ const filtered =
 
     return 0;
 
-});      
-
-        const marketMatch =
-            !market ||
-            tip.market === market;
-
-        const resultMatch =
-            !result ||
-            tip.result === result;
-
-        const teamMatch =
-
-            !search ||
-
-            tip.home
-            .toLowerCase()
-            .includes(search)
-
-            ||
-
-            tip.away
-            .toLowerCase()
-            .includes(search);
-
-        return (
-
-            marketMatch &&
-            resultMatch &&
-            teamMatch
-
-        );
-
-    });
+});
 
 renderBets(filtered);
 
