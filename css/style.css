@@ -198,8 +198,18 @@ border-bottom:none;
 }
 
 .bet-market{
-color:var(--muted);
-font-size:12px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
 }
 
 .bet-profit-win{
