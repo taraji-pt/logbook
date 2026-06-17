@@ -5,185 +5,197 @@ let marketsChart = null;
 
 function calculateProfit(stake, odd, result){
 
-    switch((result || "").toUpperCase()){
+```
+switch((result || "").toUpperCase()){
 
-        case "WIN":
-            return stake * (odd - 1);
+    case "WIN":
+        return stake * (odd - 1);
 
-        case "LOSS":
-            return -stake;
+    case "LOSS":
+        return -stake;
 
-        case "HALF WIN":
-            return (stake / 2) * (odd - 1);
+    case "HALF WIN":
+        return (stake / 2) * (odd - 1);
 
-        case "HALF LOSS":
-            return -(stake / 2);
+    case "HALF LOSS":
+        return -(stake / 2);
 
-        case "VOID":
-            return 0;
+    case "VOID":
+        return 0;
 
-        default:
-            return 0;
+    default:
+        return 0;
 
-    }
+}
+```
 
 }
 
 async function loadMarkets(){
 
-    try{
+```
+try{
 
-        const response =
-            await fetch(API_URL);
+    const response =
+        await fetch(API_URL);
 
-        const data =
-            await response.json();
+    const data =
+        await response.json();
 
-        const tips =
-            data.tips || [];
+    const tips =
+        data.tips || [];
 
-        const markets = {};
+    const markets = {};
 
-        tips.forEach(tip => {
+    tips.forEach(tip => {
 
-            const market =
-                tip.market;
+        const market =
+            tip.market;
 
-            const stake =
-                Number(tip.stake_eur || 0);
+        const stake =
+            Number(tip.stake_eur || 0);
 
-            const odd =
-                Number(tip.odd || 0);
+        const odd =
+            Number(tip.odd || 0);
 
-            const result =
-                tip.result || "";
+        const result =
+            tip.result || "";
 
-            const profit =
-                calculateProfit(
-                    stake,
-                    odd,
-                    result
-                );
+        const profit =
+            calculateProfit(
+                stake,
+                odd,
+                result
+            );
 
-            if(!markets[market]){
+        if(!markets[market]){
 
-                markets[market] = {
+            markets[market] = {
 
-                    market,
-                    bets:0,
-                    wins:0,
-                    settled:0,
-                    stake:0,
-                    profit:0
+                market,
+                bets:0,
+                wins:0,
+                settled:0,
+                stake:0,
+                profit:0,
+                bestBet:null
 
-                };
+            };
 
-            }
+        }
 
-            markets[market].bets++;
+        markets[market].bets++;
 
-            markets[market].profit += profit;
-if(
-    !markets[market].bestBet ||
-    profit > markets[market].bestBet.profit
-){
+        markets[market].profit += profit;
 
-    markets[market].bestBet = {
+        if(
+            !markets[market].bestBet ||
+            profit > markets[market].bestBet.profit
+        ){
 
-        profit,
-        home: tip.home,
-        away: tip.away,
-        home_code: tip.home_code,
-        away_code: tip.away_code
+            markets[market].bestBet = {
 
-    };
+                profit,
 
-}
-            
-            if(
-                result.toUpperCase()
-                !== "VOID"
-            ){
+                home:tip.home,
+                away:tip.away,
 
-                markets[market].stake += stake;
+                home_code:tip.home_code,
+                away_code:tip.away_code
 
-                markets[market].settled++;
+            };
 
-            }
+        }
 
-            if(
-                result.toUpperCase()
-                === "WIN"
-            ){
+        if(
+            result.toUpperCase()
+            !== "VOID"
+        ){
 
-                markets[market].wins++;
+            markets[market].stake += stake;
 
-            }
+            markets[market].settled++;
+
+        }
+
+        if(
+            result.toUpperCase()
+            === "WIN"
+        ){
+
+            markets[market].wins++;
+
+        }
+
+    });
+
+    const rows =
+        Object.values(markets)
+        .map(m => {
+
+            m.winRate =
+                m.settled > 0
+                ? (m.wins / m.settled) * 100
+                : 0;
+
+            m.roi =
+                m.stake > 0
+                ? (m.profit / m.stake) * 100
+                : 0;
+
+            return m;
 
         });
 
-        const rows =
-            Object.values(markets)
-            .map(m => {
+    rows.sort(
+        (a,b) =>
+        b.profit - a.profit
+    );
 
-                m.winRate =
-                    m.settled > 0
-                    ? (m.wins / m.settled) * 100
-                    : 0;
+    renderKPIs(rows);
 
-                m.roi =
-                    m.stake > 0
-                    ? (m.profit / m.stake) * 100
-                    : 0;
+    renderTable(rows);
 
-                return m;
+    renderChart(rows);
 
-            });
+}
 
-        rows.sort(
-            (a,b) =>
-            b.profit - a.profit
-        );
+catch(error){
 
-        renderKPIs(rows);
+    console.error(error);
 
-        renderTable(rows);
+    alert(
+        "Erro ao carregar mercados."
+    );
 
-        renderChart(rows);
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        alert(
-            "Erro ao carregar mercados."
-        );
-
-    }
+}
+```
 
 }
 
 function renderKPIs(rows){
 
-    if(!rows.length)
-        return;
+```
+if(!rows.length)
+    return;
 
-    const bestMarket =
-        rows[0];
+const bestMarket =
+    rows[0];
 
-    const bestROI =
-        [...rows]
-        .sort(
-            (a,b) =>
-            b.roi - a.roi
-        )[0];
+const bestROI =
+    [...rows]
+    .sort(
+        (a,b) =>
+        b.roi - a.roi
+    )[0];
 
 document.getElementById(
     "bestMarket"
 ).innerHTML = `
-    ${bestMarket.market}
+
+    <div>
+        ${bestMarket.market}
+    </div>
 
     <div class="kpi-sub">
 
@@ -198,176 +210,220 @@ document.getElementById(
         <span class="fi fi-${bestMarket.bestBet.away_code}"></span>
 
     </div>
+
 `;
 
-    document.getElementById(
-        "bestMarketProfit"
-    ).innerText =
-        bestMarket.profit.toFixed(2)
-        + " €";
+document.getElementById(
+    "bestMarketProfit"
+).innerHTML = `
 
-    document.getElementById(
-        "bestROI"
-    ).innerText =
-        bestROI.roi.toFixed(2)
-        + "%";
+    <div>
+        ${bestMarket.profit.toFixed(2)} €
+    </div>
 
-    document.getElementById(
-        "marketCount"
-    ).innerText =
-        rows.length;
+    <div class="kpi-sub">
+
+        <span class="fi fi-${bestMarket.bestBet.home_code}"></span>
+
+        ${bestMarket.bestBet.home}
+
+        vs
+
+        ${bestMarket.bestBet.away}
+
+        <span class="fi fi-${bestMarket.bestBet.away_code}"></span>
+
+    </div>
+
+`;
+
+document.getElementById(
+    "bestROI"
+).innerHTML = `
+
+    <div>
+        ${bestROI.roi.toFixed(2)}%
+    </div>
+
+    <div class="kpi-sub">
+
+        <span class="fi fi-${bestROI.bestBet.home_code}"></span>
+
+        ${bestROI.bestBet.home}
+
+        vs
+
+        ${bestROI.bestBet.away}
+
+        <span class="fi fi-${bestROI.bestBet.away_code}"></span>
+
+    </div>
+
+`;
+
+document.getElementById(
+    "marketCount"
+).innerText =
+    rows.length;
+```
 
 }
 
 function renderTable(rows){
 
-    const container =
-        document.getElementById(
-            "marketsTable"
-        );
+```
+const container =
+    document.getElementById(
+        "marketsTable"
+    );
 
-    container.innerHTML = `
+container.innerHTML = `
 
-        <table
-            style="
-                width:100%;
-                border-collapse:collapse;
-            "
-        >
+    <table
+        style="
+            width:100%;
+            border-collapse:collapse;
+        "
+    >
 
-            <thead>
+        <thead>
+
+            <tr>
+
+                <th align="left">
+                    Mercado
+                </th>
+
+                <th align="center">
+                    Bets
+                </th>
+
+                <th align="center">
+                    Win %
+                </th>
+
+                <th align="center">
+                    ROI
+                </th>
+
+                <th align="right">
+                    Profit
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            ${rows.map(row => `
 
                 <tr>
 
-                    <th align="left">
-                        Mercado
-                    </th>
+                    <td>
+                        ${row.market}
+                    </td>
 
-                    <th align="center">
-                        Bets
-                    </th>
+                    <td align="center">
+                        ${row.bets}
+                    </td>
 
-                    <th align="center">
-                        Win %
-                    </th>
+                    <td align="center">
+                        ${row.winRate.toFixed(1)}%
+                    </td>
 
-                    <th align="center">
-                        ROI
-                    </th>
+                    <td align="center">
+                        ${row.roi.toFixed(1)}%
+                    </td>
 
-                    <th align="right">
-                        Profit
-                    </th>
+                    <td
+                        align="right"
+                        class="${
+                            row.profit >= 0
+                            ? "positive"
+                            : "negative"
+                        }"
+                    >
+                        ${row.profit.toFixed(2)} €
+                    </td>
 
                 </tr>
 
-            </thead>
+            `).join("")}
 
-            <tbody>
+        </tbody>
 
-                ${rows.map(row => `
+    </table>
 
-                    <tr>
-
-                        <td>
-                            ${row.market}
-                        </td>
-
-                        <td align="center">
-                            ${row.bets}
-                        </td>
-
-                        <td align="center">
-                            ${row.winRate.toFixed(1)}%
-                        </td>
-
-                        <td align="center">
-                            ${row.roi.toFixed(1)}%
-                        </td>
-
-                        <td
-                            align="right"
-                            class="${
-                                row.profit >= 0
-                                ? "positive"
-                                : "negative"
-                            }"
-                        >
-
-                            ${row.profit.toFixed(2)} €
-
-                        </td>
-
-                    </tr>
-
-                `).join("")}
-
-            </tbody>
-
-        </table>
-
-    `;
+`;
+```
 
 }
 
 function renderChart(rows){
 
-    const canvas =
-        document.getElementById(
-            "marketsChart"
-        );
+```
+const canvas =
+    document.getElementById(
+        "marketsChart"
+    );
 
-    if(marketsChart){
+if(marketsChart){
 
-        marketsChart.destroy();
+    marketsChart.destroy();
 
-    }
+}
 
-    marketsChart =
-        new Chart(canvas,{
+marketsChart =
+    new Chart(canvas,{
 
-            type:"bar",
+        type:"bar",
 
-            data:{
+        data:{
 
-                labels:
+            labels:
+                rows.map(
+                    r => r.market
+                ),
+
+            datasets:[{
+
+                data:
                     rows.map(
-                        r => r.market
+                        r => r.profit
                     ),
 
-                datasets:[{
+                borderWidth:1
 
-                    label:
-                        "Profit",
+            }]
 
-                    data:
-                        rows.map(
-                            r => r.profit
-                        )
+        },
 
-                }]
+        options:{
 
-            },
+            responsive:true,
 
-            options:{
+            maintainAspectRatio:false,
 
-                responsive:true,
+            plugins:{
 
-                plugins:{
-
-                    legend:{
-                        display:false
-                    }
-
+                legend:{
+                    display:false
                 }
 
             }
 
-        });
+        }
+
+    });
+```
 
 }
 
 document.addEventListener(
-    "DOMContentLoaded",
-    loadMarkets
+"DOMContentLoaded",
+loadMarkets
 );
+
+```
+```
