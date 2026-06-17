@@ -363,3 +363,9 @@
 .result-half-loss {
     background: var(--warning);
 }
+
+.recent-bets-section {
+
+    margin-top: 32px;
+
+}
