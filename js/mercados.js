@@ -83,7 +83,23 @@ async function loadMarkets(){
             markets[market].bets++;
 
             markets[market].profit += profit;
+if(
+    !markets[market].bestBet ||
+    profit > markets[market].bestBet.profit
+){
 
+    markets[market].bestBet = {
+
+        profit,
+        home: tip.home,
+        away: tip.away,
+        home_code: tip.home_code,
+        away_code: tip.away_code
+
+    };
+
+}
+            
             if(
                 result.toUpperCase()
                 !== "VOID"
@@ -164,10 +180,25 @@ function renderKPIs(rows){
             b.roi - a.roi
         )[0];
 
-    document.getElementById(
-        "bestMarket"
-    ).innerText =
-        bestMarket.market;
+document.getElementById(
+    "bestMarket"
+).innerHTML = `
+    ${bestMarket.market}
+
+    <div class="kpi-sub">
+
+        <span class="fi fi-${bestMarket.bestBet.home_code}"></span>
+
+        ${bestMarket.bestBet.home}
+
+        vs
+
+        ${bestMarket.bestBet.away}
+
+        <span class="fi fi-${bestMarket.bestBet.away_code}"></span>
+
+    </div>
+`;
 
     document.getElementById(
         "bestMarketProfit"
