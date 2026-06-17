@@ -5,7 +5,6 @@ let marketsChart = null;
 
 function calculateProfit(stake, odd, result){
 
-```
 switch((result || "").toUpperCase()){
 
     case "WIN":
@@ -27,13 +26,11 @@ switch((result || "").toUpperCase()){
         return 0;
 
 }
-```
 
 }
 
 async function loadMarkets(){
 
-```
 try{
 
     const response =
@@ -169,13 +166,11 @@ catch(error){
     );
 
 }
-```
 
 }
 
 function renderKPIs(rows){
 
-```
 if(!rows.length)
     return;
 
@@ -246,14 +241,11 @@ document.getElementById(
     "marketCount"
 ).innerText =
     rows.length;
-```
 
 }
 
-
 function renderTable(rows){
 
-```
 const container =
     document.getElementById(
         "marketsTable"
@@ -338,13 +330,11 @@ container.innerHTML = `
     </table>
 
 `;
-```
 
 }
 
 function renderChart(rows){
 
-```
 const canvas =
     document.getElementById(
         "marketsChart"
@@ -398,7 +388,6 @@ marketsChart =
         }
 
     });
-```
 
 }
 
@@ -406,6 +395,3 @@ document.addEventListener(
 "DOMContentLoaded",
 loadMarkets
 );
-
-```
-```
