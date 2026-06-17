@@ -348,10 +348,10 @@ bankrollChart =
 
         data: {
 
-            labels:
-                history.map(
-                    (_, i) => i
-                ),
+labels:
+    history.map(
+        (_, i) => `#${i}`
+    ),
 
             datasets: [{
 
