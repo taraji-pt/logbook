@@ -1,9 +1,19 @@
 function initializeDashboard() {
 
-    const tips = window.appData.tips;
+    const tips =
+        window.appData.tips;
+
+    const settings =
+        window.appData.settings;
 
     const totalBets =
         tips.length;
+
+    const bankroll =
+        calculateCurrentBankroll(
+            settings.initial_bankroll,
+            tips
+        );
 
     const profit =
         calculateTotalProfit(tips);
@@ -11,40 +21,53 @@ function initializeDashboard() {
     const roi =
         calculateROI(tips);
 
-    const totalBetsElement =
-        document.getElementById('totalBetsValue');
+    const yieldValue =
+        calculateYield(tips);
 
-    const profitElement =
-        document.getElementById('profitValue');
+    const winRate =
+        calculateWinRate(tips);
 
-    const roiElement =
-        document.getElementById('roiValue');
-
-    if (!totalBetsElement ||
-        !profitElement ||
-        !roiElement) {
-        return;
-    }
-
-    totalBetsElement.textContent =
+    document.getElementById('totalBetsValue').textContent =
         totalBets;
 
-    profitElement.textContent =
+    document.getElementById('bankrollValue').textContent =
+        `${bankroll.toFixed(2)}€`;
+
+    document.getElementById('profitValue').textContent =
         `${profit >= 0 ? '+' : ''}${profit.toFixed(2)}€`;
 
-    roiElement.textContent =
+    document.getElementById('roiValue').textContent =
         `${roi >= 0 ? '+' : ''}${roi.toFixed(2)}%`;
 
-    totalBetsElement.style.color =
+    document.getElementById('yieldValue').textContent =
+        `${yieldValue >= 0 ? '+' : ''}${yieldValue.toFixed(2)}%`;
+
+    document.getElementById('winRateValue').textContent =
+        `${winRate.toFixed(1)}%`;
+
+    document.getElementById('totalBetsValue').style.color =
         'var(--accent)';
 
-    profitElement.style.color =
+    document.getElementById('winRateValue').style.color =
+        'var(--accent)';
+
+    document.getElementById('bankrollValue').style.color =
+        bankroll >= settings.initial_bankroll
+            ? 'var(--success)'
+            : 'var(--danger)';
+
+    document.getElementById('profitValue').style.color =
         profit >= 0
             ? 'var(--success)'
             : 'var(--danger)';
 
-    roiElement.style.color =
+    document.getElementById('roiValue').style.color =
         roi >= 0
+            ? 'var(--success)'
+            : 'var(--danger)';
+
+    document.getElementById('yieldValue').style.color =
+        yieldValue >= 0
             ? 'var(--success)'
             : 'var(--danger)';
 
