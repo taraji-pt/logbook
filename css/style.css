@@ -2,7 +2,7 @@
    GOOGLE FONT
 ========================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space Grotesk:wght@400;500;600;700;800&display=swap');
 
 
 /* =========================
@@ -43,7 +43,7 @@
     --space-xl: 32px;
 
     /* Typography */
-    --font-family: 'Manrope', sans-serif;
+    --font-family: 'Space Grotesk', sans-serif;
 
 }
 
