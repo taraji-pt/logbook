@@ -72,3 +72,143 @@ function initializeDashboard() {
             : 'var(--danger)';
 
 }
+
+function renderBankrollChart() {
+
+    const history =
+        generateBankrollHistory(
+            window.appData.settings.initial_bankroll,
+            window.appData.tips
+        );
+
+    const ctx =
+        document
+            .getElementById('bankrollChart');
+
+    if (!ctx) {
+        return;
+    }
+
+    new Chart(ctx, {
+
+        type: 'line',
+
+        data: {
+
+            labels: history.map(item =>
+                item.date.toLocaleDateString('pt-PT')
+            ),
+
+            datasets: [{
+                data: history.map(item =>
+                    item.bankroll
+                ),
+
+                borderColor: '#22c55e',
+                backgroundColor: 'transparent',
+                tension: 0.3
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+
+            scales: {
+
+                x: {
+                    ticks: {
+                        color: '#8d98a7'
+                    },
+                    grid: {
+                        color: '#2a313a'
+                    }
+                },
+
+                y: {
+                    ticks: {
+                        color: '#8d98a7'
+                    },
+                    grid: {
+                        color: '#2a313a'
+                    }
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+function renderResultsChart() {
+
+    const stats =
+        calculateWinLossStats(
+            window.appData.tips
+        );
+
+    const ctx =
+        document
+            .getElementById('resultsChart');
+
+    if (!ctx) {
+        return;
+    }
+
+    new Chart(ctx, {
+
+        type: 'doughnut',
+
+        data: {
+
+            labels: Object.keys(stats),
+
+            datasets: [{
+
+                data: Object.values(stats),
+
+                backgroundColor: [
+                    '#22c55e',
+                    '#ef4444',
+                    '#94a3b8',
+                    '#3b82f6',
+                    '#f59e0b'
+                ]
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#edf1f7'
+                    }
+                }
+
+            }
+
+        }
+
+    });
+
+}
