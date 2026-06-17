@@ -191,27 +191,8 @@ const bestROI =
 
 document.getElementById(
     "bestMarket"
-).innerHTML = `
-
-    <div>
-        ${bestMarket.market}
-    </div>
-
-    <div class="kpi-sub">
-
-        <span class="fi fi-${bestMarket.bestBet.home_code}"></span>
-
-        ${bestMarket.bestBet.home}
-
-        vs
-
-        ${bestMarket.bestBet.away}
-
-        <span class="fi fi-${bestMarket.bestBet.away_code}"></span>
-
-    </div>
-
-`;
+).innerText =
+    bestMarket.market;
 
 document.getElementById(
     "bestMarketProfit"
@@ -268,6 +249,7 @@ document.getElementById(
 ```
 
 }
+
 
 function renderTable(rows){
 
