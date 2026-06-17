@@ -250,3 +250,8 @@
 .sidebar.collapsed .nav-item {
     justify-content: center;
 }
+
+.nav-item.active {
+    background: var(--panel-alt);
+    font-weight: 600;
+}
