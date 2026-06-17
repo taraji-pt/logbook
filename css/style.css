@@ -81,27 +81,31 @@ body {
 ========================= */
 
 h1 {
-    font-size: 30px;
-    font-weight: 800;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
 }
 
 h2 {
-    font-size: 24px;
-    font-weight: 800;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 h3 {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
 }
 
 p {
     font-size: 14px;
+    font-weight: 400;
 }
 
 small {
-    color: var(--text-muted);
     font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
 }
 
 
