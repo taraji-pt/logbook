@@ -425,6 +425,19 @@ max-width:100%;
     text-align:center;
 
     padding:14px 0;
+
+}
+
+.sidebar.collapsed .menu-text{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .menu-icon{
+
+    display:inline;
+
 }
 
 .sidebar.collapsed + .main{
@@ -449,5 +462,13 @@ max-width:100%;
     border-radius:10px;
 
     cursor:pointer;
+
+}
+
+.menu-icon{
+
+    display:none;
+
+    font-size:20px;
 
 }
