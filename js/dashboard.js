@@ -73,6 +73,7 @@ function initializeDashboard() {
 
 renderBankrollChart();
 renderResultsChart();
+renderRecentBets();
     
 }
 
@@ -249,5 +250,80 @@ function renderResultsChart() {
         }
 
     });
+
+}
+
+function renderRecentBets() {
+
+    const container =
+        document.getElementById(
+            'recentBetsGrid'
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const recentBets =
+        getRecentBets(
+            window.appData.tips,
+            6
+        );
+
+    container.innerHTML =
+        recentBets
+            .map(bet => {
+
+                const profit =
+                    calculateProfit(bet);
+
+                const badgeClass =
+                    bet.result
+                        .toLowerCase()
+                        .replaceAll(' ', '-');
+
+                return `
+
+                    <div class="recent-bet-card">
+
+                        <div class="recent-bet-match">
+                            ${formatMatchName(bet)}
+                        </div>
+
+                        <div class="recent-bet-market">
+                            ${bet.market}
+                        </div>
+
+                        <div class="recent-bet-footer">
+
+                            <span
+                                class="result-badge result-${badgeClass}"
+                            >
+                                ${bet.result}
+                            </span>
+
+                            <span
+                                class="recent-bet-profit"
+                                style="
+                                    color:
+                                    ${
+                                        profit >= 0
+                                            ? 'var(--success)'
+                                            : 'var(--danger)'
+                                    };
+                                "
+                            >
+                                ${profit >= 0 ? '+' : ''}
+                                ${formatCurrency(profit)}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            })
+            .join('');
 
 }
