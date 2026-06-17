@@ -1,0 +1,263 @@
+/* =========================
+   PANELS
+========================= */
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+}
+
+
+/* =========================
+   PANEL HEADER
+========================= */
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: var(--space-lg);
+}
+
+.panel-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   KPI GRID
+========================= */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-lg);
+}
+
+
+/* =========================
+   KPI CARD
+========================= */
+
+.kpi-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kpi-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.kpi-value {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.kpi-change {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   CHART CARD
+========================= */
+
+.chart-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    padding: var(--space-lg);
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+
+.table-wrapper {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    overflow-x: auto;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background: var(--panel-alt);
+}
+
+.table th {
+    text-align: left;
+
+    padding: 14px 16px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: var(--text-muted);
+
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    padding: 14px 16px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 14px;
+}
+
+.table tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+
+/* =========================
+   BADGES
+========================= */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-win {
+    background: rgba(34,197,94,0.15);
+    color: var(--success);
+}
+
+.badge-loss {
+    background: rgba(239,68,68,0.15);
+    color: var(--danger);
+}
+
+.badge-void {
+    background: rgba(148,163,184,0.15);
+    color: #94a3b8;
+}
+
+.badge-half-win {
+    background: rgba(59,130,246,0.15);
+    color: var(--accent);
+}
+
+.badge-half-loss {
+    background: rgba(245,158,11,0.15);
+    color: var(--warning);
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+    border: none;
+    cursor: pointer;
+
+    border-radius: var(--radius-sm);
+
+    padding: 10px 16px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background: var(--panel-alt);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+
+/* =========================
+   FILTER BAR
+========================= */
+
+.filter-bar {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.filter-control {
+    min-width: 180px;
+}
+
+.filter-control select,
+.filter-control input {
+    width: 100%;
+
+    background: var(--panel-alt);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    padding: 10px 12px;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    padding: 48px 24px;
+
+    text-align: center;
+
+    color: var(--text-muted);
+}
