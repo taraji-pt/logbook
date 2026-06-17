@@ -406,3 +406,28 @@ max-width:100%;
 
     box-shadow:0 0 10px rgba(148,163,184,.25);
 }
+
+.sidebar.collapsed{
+
+    width:80px;
+
+}
+
+.sidebar.collapsed .logo-title,
+.sidebar.collapsed .logo-subtitle{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .menu-item{
+
+    text-align:center;
+
+    padding:14px 0;
+}
+
+.sidebar.collapsed + .main{
+
+    margin-left:80px;
+}
