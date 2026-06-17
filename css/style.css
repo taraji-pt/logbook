@@ -170,7 +170,7 @@ color:var(--muted);
 }
 
 #bankrollChart{
-height:350px !important;
+height:260px !important;
 }
 
 .bet-row{
@@ -481,4 +481,8 @@ max-width:100%;
 
 .sidebar.collapsed .menu-icon{
     display:inline-block !important;
+}
+
+.dashboard-grid .panel:first-child{
+    padding-bottom:10px;
 }
