@@ -380,17 +380,25 @@ options: {
 
     },
 
-    scales: {
+scales: {
 
-        y: {
+    x: {
 
-            beginAtZero: false,
-
-            grace: '5%'
-
+        ticks: {
+            display: false
         }
 
+    },
+
+    y: {
+
+        beginAtZero: false,
+
+        grace: '5%'
+
     }
+
+}
 
 }
 
