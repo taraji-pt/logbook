@@ -1,0 +1,157 @@
+/* =========================
+   APP LAYOUT
+========================= */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    transition: width 0.25s ease;
+
+    z-index: 1000;
+
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+
+
+/* =========================
+   MAIN AREA
+========================= */
+
+.main-content {
+    flex: 1;
+
+    margin-left: var(--sidebar-width);
+
+    transition: margin-left 0.25s ease;
+
+    min-height: 100vh;
+}
+
+.main-content.expanded {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.page-header {
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 var(--space-xl);
+
+    border-bottom: 1px solid var(--border);
+
+    background: var(--bg);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+
+/* =========================
+   PAGE CONTENT
+========================= */
+
+.page-content {
+    padding: var(--space-xl);
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+.page-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.page-title h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.page-title p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+
+/* =========================
+   CONTENT GRID
+========================= */
+
+.content-grid {
+    display: grid;
+    gap: var(--space-lg);
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+
+    .sidebar {
+        width: var(--sidebar-collapsed-width);
+    }
+
+    .main-content {
+        margin-left: var(--sidebar-collapsed-width);
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .page-header {
+        padding: 0 var(--space-md);
+    }
+
+    .page-content {
+        padding: var(--space-md);
+    }
+
+}
