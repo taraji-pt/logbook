@@ -366,7 +366,7 @@ bankrollChart =
 
         },
 
-       options: {
+options: {
 
     responsive: true,
 
@@ -376,6 +376,18 @@ bankrollChart =
 
         legend: {
             display: false
+        }
+
+    },
+
+    scales: {
+
+        y: {
+
+            beginAtZero: false,
+
+            grace: '5%'
+
         }
 
     }
