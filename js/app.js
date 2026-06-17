@@ -9,4 +9,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     await loadData();
 
+    if (
+        window.location.pathname.endsWith('index.html') ||
+        window.location.pathname === '/' ||
+        window.location.pathname.endsWith('/logbook/')
+    ) {
+
+        initializeDashboard();
+
+    }
+
 });
