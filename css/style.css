@@ -407,10 +407,8 @@ max-width:100%;
     box-shadow:0 0 10px rgba(148,163,184,.25);
 }
 
-.sidebar.collapsed{
-
+body.sidebar-collapsed .sidebar{
     width:80px;
-
 }
 
 .sidebar.collapsed .logo-title,
@@ -440,11 +438,11 @@ max-width:100%;
 
 }
 
-.sidebar.collapsed{
+body.sidebar-collapsed .sidebar{
     width:80px;
 }
 
-.sidebar.collapsed ~ .main{
+body.sidebar-collapsed .main{
     margin-left:80px;
 }
 
