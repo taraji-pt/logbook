@@ -191,7 +191,23 @@ const text = getCssVariable('--text');
 
         data: {
 
-            labels: Object.keys(stats),
+const total =
+    Object.values(stats)
+        .reduce((a, b) => a + b, 0);
+
+const labels =
+    Object.entries(stats)
+        .map(([result, count]) => {
+
+            const percentage =
+                total
+                    ? ((count / total) * 100)
+                        .toFixed(1)
+                    : 0;
+
+            return `${result} (${percentage}%)`;
+
+        });
 
             datasets: [{
 
@@ -219,7 +235,7 @@ backgroundColor: [
 
                 legend: {
                     position: 'bottom',
-                    labels: {
+                    labels: labels, {
                         color: text
                     }
                 }
