@@ -411,8 +411,8 @@ body.sidebar-collapsed .sidebar{
     width:80px;
 }
 
-.sidebar.collapsed .logo-title,
-.sidebar.collapsed .logo-subtitle{
+body.sidebar-collapsed .logo-title,
+body.sidebar-collapsed .logo-subtitle{
 
     display:none;
 
@@ -426,13 +426,13 @@ body.sidebar-collapsed .sidebar{
 
 }
 
-.sidebar.collapsed .menu-text{
+body.sidebar-collapsed .menu-text{
 
     display:none;
 
 }
 
-.sidebar.collapsed .menu-icon{
+body.sidebar-collapsed .menu-icon{
 
     display:inline;
 
@@ -476,11 +476,11 @@ body.sidebar-collapsed .main{
 
 }
 
-.sidebar.collapsed .menu-text{
+body.sidebar-collapsed .menu-text{
     display:none !important;
 }
 
-.sidebar.collapsed .menu-icon{
+body.sidebar-collapsed .menu-icon{
     display:inline-block !important;
 }
 
