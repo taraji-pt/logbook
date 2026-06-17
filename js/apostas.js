@@ -375,3 +375,5 @@ document.addEventListener(
 
     }
 );
+
+document.getElementById("toggleSidebar")
