@@ -1,55 +1,36 @@
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-        const sidebar =
-            document.querySelector(
-                ".sidebar"
-            );
+    const sidebar =
+        document.querySelector(".sidebar");
 
-        const toggleButton =
-            document.getElementById(
-                "toggleSidebar"
-            );
+    const button =
+        document.getElementById("toggleSidebar");
 
-        // Aplicar estado guardado
+    if(localStorage.getItem("sidebarCollapsed") === "true"){
 
-        const collapsed =
-            localStorage.getItem(
-                "sidebarCollapsed"
-            );
-
-        if(
-            collapsed === "true"
-        ){
-            sidebar.classList.add(
-                "collapsed"
-            );
-        }
-
-        // Botão toggle
-
-        if(toggleButton){
-
-            toggleButton.addEventListener(
-                "click",
-                () => {
-
-                    sidebar.classList.toggle(
-                        "collapsed"
-                    );
-
-                    localStorage.setItem(
-                        "sidebarCollapsed",
-                        sidebar.classList.contains(
-                            "collapsed"
-                        )
-                    );
-
-                }
-            );
-
-        }
+        document.body.classList.add(
+            "sidebar-collapsed"
+        );
 
     }
-);
+
+    if(button){
+
+        button.addEventListener("click", () => {
+
+            document.body.classList.toggle(
+                "sidebar-collapsed"
+            );
+
+            localStorage.setItem(
+                "sidebarCollapsed",
+                document.body.classList.contains(
+                    "sidebar-collapsed"
+                )
+            );
+
+        });
+
+    }
+
+});
