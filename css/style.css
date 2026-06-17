@@ -25,6 +25,9 @@
     --danger: #ef4444;
     --warning: #f59e0b;
     --accent: #3b82f6;
+    --chart-grid: #2a313a;
+    --chart-text: #8d98a7;
+    --chart-neutral: #94a3b8;
 
     /* Sidebar */
     --sidebar-width: 260px;
