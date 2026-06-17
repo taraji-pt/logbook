@@ -472,3 +472,11 @@ max-width:100%;
     font-size:20px;
 
 }
+
+.sidebar.collapsed .menu-text{
+    display:none !important;
+}
+
+.sidebar.collapsed .menu-icon{
+    display:inline-block !important;
+}
