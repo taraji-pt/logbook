@@ -254,8 +254,36 @@
     font-weight: 600;
 }
 
-.sidebar.collapsed .sidebar-logo .logo-text {
+.sidebar.collapsed .logo-text {
     display: none;
+}
+
+.sidebar.collapsed .sidebar-header {
+    height: auto;
+
+    padding: 12px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.sidebar.collapsed .sidebar-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
 }
 
 .sidebar.collapsed .sidebar-header {
