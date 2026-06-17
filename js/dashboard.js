@@ -71,6 +71,9 @@ function initializeDashboard() {
             ? 'var(--success)'
             : 'var(--danger)';
 
+renderBankrollChart();
+renderResultsChart();
+    
 }
 
 function renderBankrollChart() {
