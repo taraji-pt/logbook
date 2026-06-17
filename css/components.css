@@ -56,9 +56,11 @@
 }
 
 .kpi-label {
-    font-size: 13px;
-    color: var(--text-muted);
+    font-size: 12px;
     font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .kpi-value {
