@@ -7,4 +7,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     await loadSidebar();
 
+    await loadData();
+
 });
