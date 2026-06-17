@@ -3,3 +3,11 @@ function getCssVariable(name) {
         document.documentElement
     ).getPropertyValue(name).trim();
 }
+
+getFlagEmoji(countryCode)
+
+formatMatchName(bet)
+
+formatCurrency(value)
+
+formatDate(date)
