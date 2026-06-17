@@ -165,21 +165,38 @@ borderColor:
 function renderResultsChart() {
 
     const success = getCssVariable('--success');
-const danger = getCssVariable('--danger');
-const accent = getCssVariable('--accent');
-const warning = getCssVariable('--warning');
+    const danger = getCssVariable('--danger');
+    const accent = getCssVariable('--accent');
+    const warning = getCssVariable('--warning');
 
-const neutral = getCssVariable('--chart-neutral');
-const text = getCssVariable('--text');
+    const neutral = getCssVariable('--chart-neutral');
+    const text = getCssVariable('--text');
 
     const stats =
         calculateWinLossStats(
             window.appData.tips
         );
 
+    const total =
+        Object.values(stats)
+            .reduce((a, b) => a + b, 0);
+
+    const labels =
+        Object.entries(stats)
+            .map(([result, count]) => {
+
+                const percentage =
+                    total
+                        ? ((count / total) * 100)
+                            .toFixed(1)
+                        : 0;
+
+                return `${result} (${percentage}%)`;
+
+            });
+
     const ctx =
-        document
-            .getElementById('resultsChart');
+        document.getElementById('resultsChart');
 
     if (!ctx) {
         return;
@@ -191,35 +208,19 @@ const text = getCssVariable('--text');
 
         data: {
 
-const total =
-    Object.values(stats)
-        .reduce((a, b) => a + b, 0);
-
-const labels =
-    Object.entries(stats)
-        .map(([result, count]) => {
-
-            const percentage =
-                total
-                    ? ((count / total) * 100)
-                        .toFixed(1)
-                    : 0;
-
-            return `${result} (${percentage}%)`;
-
-        });
+            labels: labels,
 
             datasets: [{
 
                 data: Object.values(stats),
 
-backgroundColor: [
-    success,
-    danger,
-    neutral,
-    accent,
-    warning
-]
+                backgroundColor: [
+                    success,
+                    danger,
+                    neutral,
+                    accent,
+                    warning
+                ]
 
             }]
 
@@ -234,10 +235,13 @@ backgroundColor: [
             plugins: {
 
                 legend: {
+
                     position: 'bottom',
-                    labels: labels, {
+
+                    labels: {
                         color: text
                     }
+
                 }
 
             }
