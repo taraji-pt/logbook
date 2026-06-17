@@ -376,4 +376,18 @@ document.addEventListener(
     }
 );
 
-document.getElementById("toggleSidebar")
+document
+.getElementById(
+    "toggleSidebar"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        document
+        .querySelector(".sidebar")
+        .classList
+        .toggle("collapsed");
+
+    }
+);
