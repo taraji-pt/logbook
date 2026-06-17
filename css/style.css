@@ -440,8 +440,11 @@ max-width:100%;
 
 }
 
-.sidebar.collapsed + .main{
+.sidebar.collapsed{
+    width:80px;
+}
 
+.sidebar.collapsed ~ .main{
     margin-left:80px;
 }
 
