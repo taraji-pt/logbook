@@ -243,9 +243,7 @@
     justify-content: center;
 }
 
-.sidebar.collapsed .sidebar-toggle {
-    display: none;
-}
+
 
 .sidebar.collapsed .nav-item {
     justify-content: center;
@@ -254,4 +252,29 @@
 .nav-item.active {
     background: var(--panel-alt);
     font-weight: 600;
+}
+
+.sidebar.collapsed .sidebar-logo .logo-text {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    display: block;
+}
+
+.sidebar.collapsed .sidebar-header {
+    padding: 0;
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    width: 100%;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
