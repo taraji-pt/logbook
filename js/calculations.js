@@ -121,3 +121,116 @@ function generateBankrollHistory(
     return history;
 
 }
+
+function calculateYield(tips) {
+
+    const profit =
+        calculateTotalProfit(tips);
+
+    const stake =
+        calculateTotalStake(tips);
+
+    if (!stake) {
+        return 0;
+    }
+
+    return (profit / stake) * 100;
+
+}
+
+
+function calculateWinLossStats(tips) {
+
+    const stats = {
+        WIN: 0,
+        LOSS: 0,
+        VOID: 0,
+        'HALF WIN': 0,
+        'HALF LOSS': 0
+    };
+
+    tips.forEach(bet => {
+
+        if (stats.hasOwnProperty(bet.result)) {
+            stats[bet.result]++;
+        }
+
+    });
+
+    return stats;
+
+}
+
+
+function getRecentBets(
+    tips,
+    limit = 5
+) {
+
+    return [...tips]
+        .sort((a, b) => b.date - a.date)
+        .slice(0, limit);
+
+}
+
+
+function calculateBankrollPeak(
+    initialBankroll,
+    tips
+) {
+
+    const history =
+        generateBankrollHistory(
+            initialBankroll,
+            tips
+        );
+
+    if (!history.length) {
+        return initialBankroll;
+    }
+
+    return Math.max(
+        initialBankroll,
+        ...history.map(item => item.bankroll)
+    );
+
+}
+
+
+function calculateMaxDrawdown(
+    initialBankroll,
+    tips
+) {
+
+    const history =
+        generateBankrollHistory(
+            initialBankroll,
+            tips
+        );
+
+    let peak =
+        initialBankroll;
+
+    let maxDrawdown = 0;
+
+    history.forEach(item => {
+
+        peak = Math.max(
+            peak,
+            item.bankroll
+        );
+
+        const drawdown =
+            peak - item.bankroll;
+
+        maxDrawdown =
+            Math.max(
+                maxDrawdown,
+                drawdown
+            );
+
+    });
+
+    return maxDrawdown;
+
+}
