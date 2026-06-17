@@ -467,9 +467,11 @@ max-width:100%;
 
 .menu-icon{
 
-    display:none;
+    display:inline-block;
 
-    font-size:20px;
+    margin-right:10px;
+
+    font-size:18px;
 
 }
 
