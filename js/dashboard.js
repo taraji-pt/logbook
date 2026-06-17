@@ -78,6 +78,11 @@ renderResultsChart();
 
 function renderBankrollChart() {
 
+    const success = getCssVariable('--success');
+const danger = getCssVariable('--danger');
+const grid = getCssVariable('--chart-grid');
+const text = getCssVariable('--chart-text');
+
     const history =
         generateBankrollHistory(
             window.appData.settings.initial_bankroll,
@@ -107,7 +112,10 @@ function renderBankrollChart() {
                     item.bankroll
                 ),
 
-                borderColor: '#22c55e',
+borderColor:
+    calculateTotalProfit(window.appData.tips) >= 0
+        ? success
+        : danger,
                 backgroundColor: 'transparent',
                 tension: 0.3
             }]
@@ -130,19 +138,19 @@ function renderBankrollChart() {
 
                 x: {
                     ticks: {
-                        color: '#8d98a7'
+                        color: text
                     },
                     grid: {
-                        color: '#2a313a'
+                        color: grid
                     }
                 },
 
                 y: {
                     ticks: {
-                        color: '#8d98a7'
+                        color: text
                     },
                     grid: {
-                        color: '#2a313a'
+                        color: grid
                     }
                 }
 
@@ -155,6 +163,14 @@ function renderBankrollChart() {
 }
 
 function renderResultsChart() {
+
+    const success = getCssVariable('--success');
+const danger = getCssVariable('--danger');
+const accent = getCssVariable('--accent');
+const warning = getCssVariable('--warning');
+
+const neutral = getCssVariable('--chart-neutral');
+const text = getCssVariable('--text');
 
     const stats =
         calculateWinLossStats(
@@ -181,13 +197,13 @@ function renderResultsChart() {
 
                 data: Object.values(stats),
 
-                backgroundColor: [
-                    '#22c55e',
-                    '#ef4444',
-                    '#94a3b8',
-                    '#3b82f6',
-                    '#f59e0b'
-                ]
+backgroundColor: [
+    success,
+    danger,
+    neutral,
+    accent,
+    warning
+]
 
             }]
 
@@ -204,7 +220,7 @@ function renderResultsChart() {
                 legend: {
                     position: 'bottom',
                     labels: {
-                        color: '#edf1f7'
+                        color: text
                     }
                 }
 
