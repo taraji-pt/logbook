@@ -488,13 +488,16 @@ body.sidebar-collapsed .menu-icon{
     padding-bottom:10px;
 }
 
-/* ===== MERCADOS ===== */
+/* =========================
+   MERCADOS
+========================= */
 
-.markets-top{
+.markets-layout{
 
     display:grid;
 
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:
+        2fr 1fr;
 
     gap:12px;
 
@@ -502,7 +505,19 @@ body.sidebar-collapsed .menu-icon{
 
 }
 
-.markets-kpis{
+.market-chart-panel{
+
+    min-height:420px;
+
+}
+
+.market-chart-panel canvas{
+
+    height:340px !important;
+
+}
+
+.markets-side{
 
     display:flex;
 
@@ -512,19 +527,43 @@ body.sidebar-collapsed .menu-icon{
 
 }
 
-.chart-panel{
+.market-kpi{
 
-    min-height:420px;
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
 
 }
 
-.kpi-sub{
+.market-kpi .kpi-value{
+
+    font-size:32px;
 
     margin-top:8px;
 
+}
+
+.market-kpi-name{
+
+    margin-top:10px;
+
     color:var(--muted);
 
-    font-size:13px;
+    font-size:14px;
+
+    font-weight:600;
+
+    word-break:break-word;
+
+}
+
+.markets-table-wrapper{
+
+    overflow-x:auto;
 
 }
 
@@ -540,38 +579,62 @@ body.sidebar-collapsed .menu-icon{
 
     text-align:left;
 
+    padding:14px;
+
+    border-bottom:
+        1px solid var(--border);
+
     color:var(--muted);
 
     font-size:13px;
 
-    padding:12px;
+    font-weight:700;
 
 }
 
 .markets-table td{
 
-    padding:14px 12px;
+    padding:14px;
 
-    border-top:1px solid rgba(255,255,255,.05);
-
-}
-
-.markets-table tr:hover{
-
-    background:rgba(255,255,255,.03);
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
 
 }
 
-.markets-table td:last-child,
-.markets-table th:last-child{
+.markets-table tbody tr{
 
-    text-align:right;
+    transition:0.2s;
 
 }
+
+.markets-table tbody tr:hover{
+
+    background:
+        rgba(255,255,255,.03);
+
+}
+
+.market-positive{
+
+    color:var(--green);
+
+    font-weight:700;
+
+}
+
+.market-negative{
+
+    color:var(--red);
+
+    font-weight:700;
+
+}
+
+/* RESPONSIVO */
 
 @media(max-width:1000px){
 
-    .markets-top{
+    .markets-layout{
 
         grid-template-columns:1fr;
 
