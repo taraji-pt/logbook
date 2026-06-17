@@ -58,6 +58,18 @@ try {
 
     const tips = data.tips || [];
     const settings = data.settings || {};
+    const analysisDate =
+    new Date(
+        settings.analysis_start_date
+    );
+
+document.getElementById(
+    "page-subtitle"
+).innerText =
+    "Apostas desde " +
+    analysisDate.toLocaleDateString(
+        "pt-PT"
+    );
 
     const initialBankroll =
         Number(settings.initial_bankroll || 10);
