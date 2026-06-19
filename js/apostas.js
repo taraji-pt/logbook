@@ -212,7 +212,9 @@ document.getElementById(
 ).style.color =
     roi >= 0
         ? 'var(--success)'
-        : 'var(--danger)';    
+        : 'var(--danger)';   
+
+    renderTable(tips);
 
 }
 
@@ -519,5 +521,170 @@ function initializeFilterEvents() {
         );
 
     });
+
+}
+
+function renderTable(tips) {
+
+    const container =
+        document.getElementById(
+            'betsTableContainer'
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const sortedTips =
+        [...tips]
+            .sort(
+                (a, b) =>
+                    Number(b.id) -
+                    Number(a.id)
+            );
+
+    container.innerHTML = `
+
+        <table class="bets-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+                    <th>Match</th>
+                    <th>Competition</th>
+                    <th>Market</th>
+                    <th>Odd</th>
+                    <th>Stake</th>
+                    <th>Result</th>
+                    <th>Profit</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${sortedTips
+                    .map(bet => {
+
+                        const profit =
+                            calculateProfit(
+                                bet
+                            );
+
+                        const badgeClass =
+                            bet.result
+                                .toLowerCase()
+                                .replaceAll(
+                                    ' ',
+                                    '-'
+                                );
+
+                        const competitionInfo =
+                            bet.stage
+                                ? `
+                                    <div>
+                                        ${bet.competition}
+                                    </div>
+
+                                    <div class="table-subtitle">
+                                        ${bet.stage}
+                                    </div>
+                                `
+                                : `
+                                    <div>
+                                        ${bet.competition}
+                                    </div>
+                                `;
+
+                        return `
+
+                            <tr>
+
+                                <td>
+                                    ${formatDate(
+                                        bet.date
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${formatMatchName(
+                                        bet
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${competitionInfo}
+                                </td>
+
+                                <td>
+                                    ${bet.market}
+                                </td>
+
+                                <td>
+                                    ${Number(
+                                        bet.odd
+                                    ).toFixed(2)}
+                                </td>
+
+                                <td>
+                                    ${formatCurrency(
+                                        bet.stake
+                                    )}
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="
+                                            result-badge
+                                            result-${badgeClass}
+                                        "
+                                    >
+                                        ${bet.result}
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="
+                                            table-profit
+                                            ${
+                                                profit > 0
+                                                    ? 'profit-positive'
+                                                    : profit < 0
+                                                        ? 'profit-negative'
+                                                        : 'profit-neutral'
+                                            }
+                                        "
+                                    >
+                                        ${
+                                            profit > 0
+                                                ? '+'
+                                                : ''
+                                        }
+                                        ${formatCurrency(
+                                            profit
+                                        )}
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    })
+                    .join('')}
+
+            </tbody>
+
+        </table>
+
+    `;
 
 }
