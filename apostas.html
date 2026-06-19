@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Apostas | Betting Logbook</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+
+            <header class="page-header">
+
+                <div class="page-title">
+
+                    <h1>Apostas</h1>
+
+                    <p>
+                        Histórico completo de apostas
+                    </p>
+
+                </div>
+
+            </header>
+
+            <div class="page-content">
+
+                <section class="filters-section">
+
+                    <div class="panel-header">
+
+                        <div class="panel-title">
+                            Filters
+                        </div>
+
+                    </div>
+
+                    <div class="filters-grid">
+
+                        <input
+                            id="searchFilter"
+                            type="text"
+                            placeholder="Pesquisar equipa..."
+                        >
+
+                        <select id="marketFilter">
+                            <option value="">
+                                Todos os mercados
+                            </option>
+                        </select>
+
+                        <select id="resultFilter">
+                            <option value="">
+                                Todos os resultados
+                            </option>
+                        </select>
+
+                        <select id="competitionFilter">
+                            <option value="">
+                                Todas as competições
+                            </option>
+                        </select>
+
+                    </div>
+
+                </section>
+
+                <div class="kpi-grid">
+
+                    <div class="kpi-card">
+                        <div class="kpi-label">Total Bets</div>
+                        <div id="betsKpi" class="kpi-value">-</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-label">Win Rate</div>
+                        <div id="winRateKpi" class="kpi-value">-</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-label">Profit</div>
+                        <div id="profitKpi" class="kpi-value">-</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-label">ROI</div>
+                        <div id="roiKpi" class="kpi-value">-</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-label">Average Odd</div>
+                        <div id="avgOddKpi" class="kpi-value">-</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-label">Highest Odd</div>
+                        <div id="highestOddKpi" class="kpi-value">-</div>
+                    </div>
+
+                </div>
+
+                <section class="table-section">
+
+                    <div class="panel-header">
+
+                        <div class="panel-title">
+                            Bets
+                        </div>
+
+                    </div>
+
+                    <div id="betsTableContainer">
+
+                    </div>
+
+                    <div id="paginationContainer">
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/calculations.js"></script>
+    <script src="js/apostas.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
