@@ -578,9 +578,6 @@ const paginatedTips =
     );
 
     container.innerHTML = `
-renderPagination(
-    totalPages
-);
 
         <table class="bets-table">
 
@@ -606,7 +603,7 @@ renderPagination(
 
                 ${paginatedTips
                     .map(bet => {
-
+             
                         const profit =
                             calculateProfit(
                                 bet
@@ -725,9 +722,13 @@ renderPagination(
 
             </tbody>
 
-        </table>
+         </table>
 
     `;
+
+    renderPagination(
+        totalPages
+    );
 
 }
 
