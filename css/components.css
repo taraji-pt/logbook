@@ -477,3 +477,15 @@
     color: var(--text);
 
 }
+
+.recent-bet-details {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 8px;
+
+}
