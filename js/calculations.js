@@ -168,7 +168,11 @@ function getRecentBets(
 ) {
 
     return [...tips]
-        .sort((a, b) => b.date - a.date)
+        .sort(
+            (a, b) =>
+                Number(b.id) -
+                Number(a.id)
+        )
         .slice(0, limit);
 
 }
