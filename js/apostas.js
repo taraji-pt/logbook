@@ -549,6 +549,29 @@ function renderTable(tips) {
                     Number(a.id)
             );
 
+    const totalPages =
+    Math.ceil(
+        sortedTips.length /
+        ITEMS_PER_PAGE
+    );
+
+if (
+    currentPage > totalPages &&
+    totalPages > 0
+) {
+    currentPage = totalPages;
+}
+
+const start =
+    (currentPage - 1) *
+    ITEMS_PER_PAGE;
+
+const paginatedTips =
+    sortedTips.slice(
+        start,
+        start + ITEMS_PER_PAGE
+    );
+
     container.innerHTML = `
 
         <table class="bets-table">
@@ -573,7 +596,7 @@ function renderTable(tips) {
 
             <tbody>
 
-                ${sortedTips
+                ${paginatedTips
                     .map(bet => {
 
                         const profit =
