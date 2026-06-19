@@ -631,7 +631,7 @@ function renderTable(tips) {
 
                                 <td>
                                     ${formatCurrency(
-                                        bet.stake
+                                        bet.stake_eur
                                     )}
                                 </td>
 
