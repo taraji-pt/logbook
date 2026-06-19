@@ -2,6 +2,10 @@ let currentPage = 1;
 
 const ITEMS_PER_PAGE = 10;
 
+let currentSortField = 'id';
+
+let currentSortDirection = 'desc';
+
 function initializeApostas() {
 
     const tips =
@@ -842,6 +846,31 @@ function goToPage(page) {
 
     currentPage =
         page;
+
+    applyFilters();
+
+}
+
+function handleSort(field) {
+
+    if (
+        currentSortField === field
+    ) {
+
+        currentSortDirection =
+            currentSortDirection === 'asc'
+                ? 'desc'
+                : 'asc';
+
+    } else {
+
+        currentSortField =
+            field;
+
+        currentSortDirection =
+            'desc';
+
+    }
 
     applyFilters();
 
