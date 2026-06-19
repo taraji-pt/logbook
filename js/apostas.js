@@ -8,7 +8,9 @@ populateFilters(tips);
 initializeDateFilters();
 
 initializeFilterEvents();
-
+    
+initializeClearFiltersButton();
+    
 updateKpis(tips);
 
 }
