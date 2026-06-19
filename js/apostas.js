@@ -550,13 +550,99 @@ function renderTable(tips) {
         return;
     }
 
-    const sortedTips =
-        [...tips]
-            .sort(
-                (a, b) =>
-                    Number(b.id) -
-                    Number(a.id)
+const sortedTips =
+    [...tips]
+        .sort((a, b) => {
+
+            let valueA;
+            let valueB;
+
+            switch (
+                currentSortField
+            ) {
+
+                case 'date':
+
+                    valueA =
+                        new Date(
+                            a.date
+                        );
+
+                    valueB =
+                        new Date(
+                            b.date
+                        );
+
+                    break;
+
+                case 'odd':
+
+                    valueA =
+                        Number(
+                            a.odd
+                        );
+
+                    valueB =
+                        Number(
+                            b.odd
+                        );
+
+                    break;
+
+                case 'stake':
+
+                    valueA =
+                        Number(
+                            a.stake_eur
+                        );
+
+                    valueB =
+                        Number(
+                            b.stake_eur
+                        );
+
+                    break;
+
+                case 'profit':
+
+                    valueA =
+                        calculateProfit(a);
+
+                    valueB =
+                        calculateProfit(b);
+
+                    break;
+
+                default:
+
+                    valueA =
+                        Number(
+                            a.id
+                        );
+
+                    valueB =
+                        Number(
+                            b.id
+                        );
+
+            }
+
+            if (
+                currentSortDirection ===
+                'asc'
+            ) {
+
+                return (
+                    valueA - valueB
+                );
+
+            }
+
+            return (
+                valueB - valueA
             );
+
+        });
 
     const totalPages =
     Math.ceil(
@@ -589,15 +675,43 @@ const paginatedTips =
 
                 <tr>
 
-                    <th>Date</th>
-                    <th>Match</th>
-                    <th>Score</th>
-                    <th>Competition</th>
-                    <th>Market</th>
-                    <th>Odd</th>
-                    <th>Stake</th>
-                    <th>Result</th>
-                    <th>Profit</th>
+<th
+    class="sortable"
+    onclick="handleSort('date')"
+>
+    Date
+</th>
+
+<th>Match</th>
+
+<th>Score</th>
+
+<th>Competition</th>
+
+<th>Market</th>
+
+<th
+    class="sortable"
+    onclick="handleSort('odd')"
+>
+    Odd
+</th>
+
+<th
+    class="sortable"
+    onclick="handleSort('stake')"
+>
+    Stake
+</th>
+
+<th>Result</th>
+
+<th
+    class="sortable"
+    onclick="handleSort('profit')"
+>
+    Profit
+</th>
 
                 </tr>
 
