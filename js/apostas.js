@@ -693,3 +693,53 @@ function renderTable(tips) {
     `;
 
 }
+
+function initializeClearFiltersButton() {
+
+    const button =
+        document.getElementById(
+            'clearFiltersBtn'
+        );
+
+    if (!button) {
+        return;
+    }
+
+    button.addEventListener(
+        'click',
+        () => {
+
+            document.getElementById(
+                'searchFilter'
+            ).value = '';
+
+            document.getElementById(
+                'marketFilter'
+            ).value = '';
+
+            document.getElementById(
+                'resultFilter'
+            ).value = '';
+
+            document.getElementById(
+                'competitionFilter'
+            ).value = '';
+
+            document.getElementById(
+                'periodFilter'
+            ).value = 'all';
+
+            document.getElementById(
+                'startDateFilter'
+            ).value = '';
+
+            document.getElementById(
+                'endDateFilter'
+            ).value = '';
+
+            applyFilters();
+
+        }
+    );
+
+}
