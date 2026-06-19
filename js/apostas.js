@@ -375,14 +375,10 @@ function initializeDateFilters() {
             }
 
             startDateFilter.value =
-                startDate
-                    .toISOString()
-                    .split('T')[0];
+                startDate.toLocaleDateString('en-CA');
 
             endDateFilter.value =
-                today
-                    .toISOString()
-                    .split('T')[0];
+                today.toLocaleDateString('en-CA');
 
         }
     );
