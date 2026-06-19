@@ -290,9 +290,13 @@ function renderRecentBets() {
                             ${formatMatchName(bet)}
                         </div>
 
-                        <div class="recent-bet-market">
-                            ${bet.market}
-                        </div>
+<div class="recent-bet-score">
+    ${bet.score || '—'}
+</div>
+
+<div class="recent-bet-market">
+    ${bet.market}
+</div>
 
                         <div class="recent-bet-footer">
 
