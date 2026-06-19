@@ -38,7 +38,13 @@ function getFlagIcon(countryCode) {
 
 function formatMatchName(bet) {
 
-    return `${getFlagEmoji(bet.home_code)} ${bet.home} vs ${bet.away} ${getFlagEmoji(bet.away_code)}`;
+    return `
+    ${getFlagIcon(bet.home_code)}
+    ${bet.home}
+    vs
+    ${bet.away}
+    ${getFlagIcon(bet.away_code)}
+`;
 
 }
 
