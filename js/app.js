@@ -19,4 +19,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     }
 
+if (
+    window.location.pathname.endsWith('apostas.html')
+) {
+
+    initializeApostas();
+
+}    
+
 });
