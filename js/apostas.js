@@ -1,3 +1,7 @@
+let currentPage = 1;
+
+const ITEMS_PER_PAGE = 25;
+
 function initializeApostas() {
 
     const tips =
