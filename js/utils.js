@@ -7,19 +7,31 @@ function getCssVariable(name) {
 }
 
 
-function getFlagEmoji(countryCode) {
+function getFlagIcon(countryCode) {
 
     if (!countryCode) {
         return '';
     }
 
-    return countryCode
-        .toUpperCase()
-        .replace(/./g, char =>
-            String.fromCodePoint(
-                127397 + char.charCodeAt()
-            )
-        );
+    const flagMap = {
+
+        SCO: 'gb-sct',
+        ENG: 'gb-eng',
+        WAL: 'gb-wls',
+        NIR: 'gb-nir'
+
+    };
+
+    const code =
+        flagMap[countryCode.toUpperCase()]
+        ||
+        countryCode.toLowerCase();
+
+    return `
+        <span
+            class="fi fi-${code}"
+        ></span>
+    `;
 
 }
 
