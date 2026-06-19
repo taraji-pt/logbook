@@ -679,7 +679,7 @@ const paginatedTips =
     class="sortable"
     onclick="handleSort('date')"
 >
-    Date
+    Odd${getSortIndicator('date')}
 </th>
 
 <th>Match</th>
@@ -694,14 +694,14 @@ const paginatedTips =
     class="sortable"
     onclick="handleSort('odd')"
 >
-    Odd
+        Odd${getSortIndicator('odd')}
 </th>
 
 <th
     class="sortable"
     onclick="handleSort('stake')"
 >
-    Stake
+        Odd${getSortIndicator('stake')}
 </th>
 
 <th>Result</th>
@@ -710,7 +710,7 @@ const paginatedTips =
     class="sortable"
     onclick="handleSort('profit')"
 >
-    Profit
+        Odd${getSortIndicator('profit')}
 </th>
 
                 </tr>
