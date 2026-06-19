@@ -292,6 +292,8 @@ function renderRecentBets() {
 
 <div class="recent-bet-details">
 
+<div class="recent-bet-details">
+
     <div class="recent-bet-score">
         ${bet.score || '—'}
     </div>
@@ -299,6 +301,8 @@ function renderRecentBets() {
     <div class="recent-bet-market">
         ${bet.market}
     </div>
+
+</div>
 
 </div>
 
