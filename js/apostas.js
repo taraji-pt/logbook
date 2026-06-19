@@ -352,3 +352,101 @@ function initializeDateFilters() {
     );
 
 }
+
+function applyFilters() {
+
+    const filters =
+        getFilters();
+
+    let filteredTips =
+        [...window.appData.tips];
+
+    if (filters.search) {
+
+        filteredTips =
+            filteredTips.filter(bet => {
+
+                const match =
+                    `${bet.home} ${bet.away}`
+                        .toLowerCase();
+
+                return match.includes(
+                    filters.search
+                );
+
+            });
+
+    }
+
+    if (filters.market) {
+
+        filteredTips =
+            filteredTips.filter(
+                bet =>
+                    bet.market ===
+                    filters.market
+            );
+
+    }
+
+    if (filters.result) {
+
+        filteredTips =
+            filteredTips.filter(
+                bet =>
+                    bet.result ===
+                    filters.result
+            );
+
+    }
+
+    if (filters.competition) {
+
+        filteredTips =
+            filteredTips.filter(
+                bet =>
+                    bet.competition ===
+                    filters.competition
+            );
+
+    }
+
+    if (filters.startDate) {
+
+        const startDate =
+            new Date(
+                filters.startDate
+            );
+
+        filteredTips =
+            filteredTips.filter(
+                bet =>
+                    new Date(
+                        bet.date
+                    ) >= startDate
+            );
+
+    }
+
+    if (filters.endDate) {
+
+        const endDate =
+            new Date(
+                filters.endDate
+            );
+
+        filteredTips =
+            filteredTips.filter(
+                bet =>
+                    new Date(
+                        bet.date
+                    ) <= endDate
+            );
+
+    }
+
+    updateKpis(
+        filteredTips
+    );
+
+}
