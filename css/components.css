@@ -389,3 +389,81 @@
     margin-top: 40px;
 
 }
+
+.bets-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+.bets-table th {
+
+    text-align: left;
+
+    padding: 14px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.bets-table td {
+
+    padding: 14px;
+
+    border-bottom: 1px solid var(--border);
+
+    vertical-align: middle;
+
+}
+
+.bets-table tbody tr:hover {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.03
+        );
+
+}
+
+.table-subtitle {
+
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color:
+        var(--text-muted);
+
+}
+
+.table-profit {
+
+    font-weight: 700;
+
+}
+
+.profit-positive {
+
+    color:
+        var(--success);
+
+}
+
+.profit-negative {
+
+    color:
+        var(--danger);
+
+}
+
+.profit-neutral {
+
+    color:
+        var(--text-muted);
+
+}
