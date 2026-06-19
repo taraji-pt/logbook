@@ -698,6 +698,8 @@ function renderTable(tips) {
 
 function initializeClearFiltersButton() {
 
+        console.log('CLEAR INIT');
+
     const button =
         document.getElementById(
             'clearFiltersBtn'
