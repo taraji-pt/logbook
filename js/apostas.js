@@ -561,19 +561,30 @@ const sortedTips =
                 currentSortField
             ) {
 
-                case 'date':
+case 'date':
 
-                    valueA =
-                        new Date(
-                            a.date
-                        );
+    valueA =
+        new Date(
+            a.date
+        );
 
-                    valueB =
-                        new Date(
-                            b.date
-                        );
+    valueB =
+        new Date(
+            b.date
+        );
 
-                    break;
+    if (
+        valueA.getTime() ===
+        valueB.getTime()
+    ) {
+
+        return currentSortDirection === 'asc'
+            ? Number(a.id) - Number(b.id)
+            : Number(b.id) - Number(a.id);
+
+    }
+
+    break;             
 
                 case 'odd':
 
