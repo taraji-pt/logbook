@@ -553,6 +553,7 @@ function renderTable(tips) {
 
                     <th>Date</th>
                     <th>Match</th>
+                    <th>Score</th>
                     <th>Competition</th>
                     <th>Market</th>
                     <th>Odd</th>
@@ -609,15 +610,19 @@ function renderTable(tips) {
                                     )}
                                 </td>
 
-                                <td>
-                                    ${formatMatchName(
-                                        bet
-                                    )}
-                                </td>
+<td>
+    ${formatMatchName(
+        bet
+    )}
+</td>
 
-                                <td>
-                                    ${competitionInfo}
-                                </td>
+<td>
+    ${bet.score || '—'}
+</td>
+
+<td>
+    ${competitionInfo}
+</td>
 
                                 <td>
                                     ${bet.market}
