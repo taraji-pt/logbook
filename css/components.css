@@ -406,6 +406,10 @@
 
     border-bottom: 1px solid var(--border);
 
+   font-size: 12px;
+
+letter-spacing: 0.5px;
+
 }
 
 .bets-table td {
@@ -415,6 +419,8 @@
     border-bottom: 1px solid var(--border);
 
     vertical-align: middle;
+
+   font-size: 13px;
 
 }
 
