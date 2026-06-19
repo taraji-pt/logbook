@@ -3,11 +3,13 @@ function initializeApostas() {
     const tips =
         window.appData.tips;
 
-    populateFilters(tips);
+populateFilters(tips);
 
-    initializeDateFilters();
+initializeDateFilters();
 
-    updateKpis(tips);
+initializeFilterEvents();
+
+updateKpis(tips);
 
 }
 
