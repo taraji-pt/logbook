@@ -450,3 +450,42 @@ function applyFilters() {
     );
 
 }
+
+function initializeFilterEvents() {
+
+    const ids = [
+
+        'searchFilter',
+        'marketFilter',
+        'resultFilter',
+        'competitionFilter',
+        'periodFilter',
+        'startDateFilter',
+        'endDateFilter'
+
+    ];
+
+    ids.forEach(id => {
+
+        const element =
+            document.getElementById(
+                id
+            );
+
+        if (!element) {
+            return;
+        }
+
+        element.addEventListener(
+            'input',
+            applyFilters
+        );
+
+        element.addEventListener(
+            'change',
+            applyFilters
+        );
+
+    });
+
+}
