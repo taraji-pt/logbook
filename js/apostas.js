@@ -180,6 +180,40 @@ function updateKpis(tips) {
     ).textContent =
         highestOdd.toFixed(2);
 
+document.getElementById(
+    'betsKpi'
+).style.color =
+    'var(--accent)';
+
+document.getElementById(
+    'winRateKpi'
+).style.color =
+    'var(--accent)';
+
+document.getElementById(
+    'avgOddKpi'
+).style.color =
+    'var(--accent)';
+
+document.getElementById(
+    'highestOddKpi'
+).style.color =
+    'var(--accent)';
+
+document.getElementById(
+    'profitKpi'
+).style.color =
+    profit >= 0
+        ? 'var(--success)'
+        : 'var(--danger)';
+
+document.getElementById(
+    'roiKpi'
+).style.color =
+    roi >= 0
+        ? 'var(--success)'
+        : 'var(--danger)';    
+
 }
 
 
