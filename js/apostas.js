@@ -485,6 +485,11 @@ function applyFilters() {
 
     }
 
+    if (
+    currentPage < 1
+) {
+    currentPage = 1;
+}
     updateKpis(
         filteredTips
     );
@@ -573,6 +578,9 @@ const paginatedTips =
     );
 
     container.innerHTML = `
+renderPagination(
+    totalPages
+);
 
         <table class="bets-table">
 
@@ -770,5 +778,70 @@ const button =
 
         }
     );
+
+}
+
+function renderPagination(
+    totalPages
+) {
+
+    const container =
+        document.getElementById(
+            'paginationContainer'
+        );
+
+    if (!container) {
+        return;
+    }
+
+    if (totalPages <= 1) {
+
+        container.innerHTML = '';
+
+        return;
+
+    }
+
+    let html = '';
+
+    for (
+        let page = 1;
+        page <= totalPages;
+        page++
+    ) {
+
+        html += `
+
+            <button
+                class="
+                    pagination-btn
+                    ${
+                        page === currentPage
+                            ? 'active'
+                            : ''
+                    }
+                "
+                onclick="
+                    goToPage(${page})
+                "
+            >
+                ${page}
+            </button>
+
+        `;
+
+    }
+
+    container.innerHTML =
+        html;
+
+}
+
+function goToPage(page) {
+
+    currentPage =
+        page;
+
+    applyFilters();
 
 }
