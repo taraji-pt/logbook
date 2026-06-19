@@ -989,3 +989,17 @@ function handleSort(field) {
     applyFilters();
 
 }
+
+function getSortIndicator(field) {
+
+    if (
+        currentSortField !== field
+    ) {
+        return '';
+    }
+
+    return currentSortDirection === 'asc'
+        ? ' ▲'
+        : ' ▼';
+
+}
