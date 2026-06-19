@@ -27,4 +27,13 @@ if (
 
 }    
 
+     if (
+        window.location.pathname.endsWith('mercados.html')
+    ) {
+
+        initializeMercados();
+
+    }
+    
+
 });
