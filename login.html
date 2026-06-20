@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        TARAJI'S Logbook
+    </title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+
+</head>
+
+<body class="login-page">
+
+    <div class="login-overlay">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                ⚽
+            </div>
+
+            <h1 class="login-title">
+
+                TARAJI'S
+
+                <span>
+                    LOGBOOK
+                </span>
+
+            </h1>
+
+            <p class="login-tagline">
+
+                Track. Analyze. Improve.
+
+            </p>
+
+            <div class="login-divider">
+
+            </div>
+
+            <p class="login-subtitle">
+
+                Enter password to continue
+
+            </p>
+
+            <input
+                id="passwordInput"
+                type="password"
+                placeholder="Password"
+                autocomplete="off"
+            >
+
+            <button
+                class="login-btn"
+                onclick="login()"
+            >
+
+                Login
+
+            </button>
+
+            <div
+                id="loginError"
+                class="login-error"
+            >
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/auth.js"></script>
+
+    <script>
+
+        document
+            .getElementById(
+                'passwordInput'
+            )
+            .addEventListener(
+                'keydown',
+                event => {
+
+                    if (
+                        event.key ===
+                        'Enter'
+                    ) {
+
+                        login();
+
+                    }
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>
