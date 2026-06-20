@@ -50,19 +50,29 @@ function calculateTotalStake(tips) {
 }
 
 
-function calculateROI(tips) {
+function calculateROI(
+    initialBankroll,
+    tips
+) {
 
     const profit =
-        calculateTotalProfit(tips);
+        calculateTotalProfit(
+            tips
+        );
 
-    const stake =
-        calculateTotalStake(tips);
+    const bankroll =
+        Number(
+            initialBankroll
+        );
 
-    if (!stake) {
+    if (!bankroll) {
         return 0;
     }
 
-    return (profit / stake) * 100;
+    return (
+        profit /
+        bankroll
+    ) * 100;
 
 }
 
