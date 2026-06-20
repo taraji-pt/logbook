@@ -47,10 +47,16 @@ function buildMarketStats(tips) {
                     bets
                 );
 
-            const roi =
-                calculateROI(
-                    bets
-                );
+const roi =
+    calculateROI(
+        window.appData.settings.initial_bankroll,
+        bets
+    );
+
+const yieldValue =
+    calculateYield(
+        bets
+    );
 
             const winRate =
                 calculateWinRate(
@@ -79,7 +85,7 @@ function buildMarketStats(tips) {
                 roi,
 
                 yield:
-                    roi,
+                    yieldValue,
 
                 winRate,
 
@@ -99,29 +105,37 @@ function updateMarketKpis(
         return;
     }
 
-    const bestProfit =
-        [...stats]
-            .sort(
-                (a, b) =>
-                    b.profit -
-                    a.profit
-            )[0];
+const bestProfit =
+    [...stats]
+        .sort(
+            (a, b) =>
+                b.profit -
+                a.profit
+        )[0];
 
-    const worstProfit =
-        [...stats]
-            .sort(
-                (a, b) =>
-                    a.profit -
-                    b.profit
-            )[0];
+const bestYield =
+    [...stats]
+        .sort(
+            (a, b) =>
+                b.yield -
+                a.yield
+        )[0];
 
-    const bestROI =
-        [...stats]
-            .sort(
-                (a, b) =>
-                    b.roi -
-                    a.roi
-            )[0];
+const worstYield =
+    [...stats]
+        .sort(
+            (a, b) =>
+                a.yield -
+                b.yield
+        )[0];
+
+const bestROI =
+    [...stats]
+        .sort(
+            (a, b) =>
+                b.roi -
+                a.roi
+        )[0];
 
     const bestWinRate =
         [...stats]
@@ -136,15 +150,15 @@ function updateMarketKpis(
     ).textContent =
         stats.length;
 
-    document.getElementById(
-        'bestMarketKpi'
-    ).textContent =
-        bestProfit.market;
+document.getElementById(
+    'bestMarketKpi'
+).textContent =
+    bestYield.market;
 
-    document.getElementById(
-        'worstMarketKpi'
-    ).textContent =
-        worstProfit.market;
+document.getElementById(
+    'worstMarketKpi'
+).textContent =
+    worstYield.market;
 
     document.getElementById(
         'highestProfitMarketKpi'
