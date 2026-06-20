@@ -18,8 +18,11 @@ function initializeDashboard() {
     const profit =
         calculateTotalProfit(tips);
 
-    const roi =
-        calculateROI(tips);
+const roi =
+    calculateROI(
+        window.appData.settings.initial_bankroll,
+        tips
+    );
 
     const yieldValue =
         calculateYield(tips);
