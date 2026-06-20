@@ -216,68 +216,45 @@ function calculateCurrentStreak(
     tips
 ) {
 
-    const sorted =
+    const resolved =
         [...tips]
+            .filter(
+                bet =>
+                    bet.result !==
+                    'AWAITING SCORE'
+            )
             .sort(
                 (a, b) =>
-                    Number(b.id) -
-                    Number(a.id)
-            );
-
-    if (
-        !sorted.length
-    ) {
-        return '-';
-    }
-
-    const latestResult =
-        sorted[0].result;
-
-    const isWin =
-        latestResult === 'WIN' ||
-        latestResult === 'HALF WIN';
-
-    const isLoss =
-        latestResult === 'LOSS' ||
-        latestResult === 'HALF LOSS';
-
-    let streak = 0;
-
-    for (
-        const bet of sorted
-    ) {
-
-        if (
-            isWin &&
-            (
-                bet.result === 'WIN' ||
-                bet.result === 'HALF WIN'
+                    Number(a.id) -
+                    Number(b.id)
             )
-        ) {
+            .slice(-5);
 
-            streak++;
+    return resolved
+        .map(bet => {
 
-        } else if (
-            isLoss &&
-            (
-                bet.result === 'LOSS' ||
-                bet.result === 'HALF LOSS'
-            )
-        ) {
+            switch (
+                bet.result
+            ) {
 
-            streak++;
+                case 'WIN':
+                case 'HALF WIN':
+                    return 'W';
 
-        } else {
+                case 'LOSS':
+                case 'HALF LOSS':
+                    return 'L';
 
-            break;
+                case 'VOID':
+                    return 'V';
 
-        }
+                default:
+                    return '';
 
-    }
+            }
 
-    return `${
-        isWin ? 'W' : 'L'
-    }${streak}`;
+        })
+        .join('');
 
 }
 
