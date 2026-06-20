@@ -26,25 +26,33 @@ async function loadSidebar() {
 
 function initializeSidebar() {
 
-    const sidebar = document.getElementById('sidebar');
-    const toggle = document.getElementById('sidebarToggle');
-    const mainContent = document.querySelector('.main-content');
+    const sidebar =
+        document.getElementById(
+            'sidebar'
+        );
 
-    if (!sidebar || !toggle || !mainContent) {
+    const toggle =
+        document.getElementById(
+            'sidebarToggle'
+        );
+
+    const mainContent =
+        document.querySelector(
+            '.main-content'
+        );
+
+    if (
+        !sidebar ||
+        !toggle ||
+        !mainContent
+    ) {
         return;
     }
 
-const savedState =
-    localStorage.getItem(
-        'sidebar-collapsed'
-    );
+    const isMobile =
+        window.innerWidth < 768;
 
-const isMobile =
-    window.innerWidth < 768;
-
-if (savedState !== null) {
-
-    if (savedState === 'true') {
+    if (isMobile) {
 
         sidebar.classList.add(
             'collapsed'
@@ -54,31 +62,54 @@ if (savedState !== null) {
             'expanded'
         );
 
+    } else {
+
+        const isCollapsed =
+            localStorage.getItem(
+                'sidebar-collapsed'
+            ) === 'true';
+
+        if (isCollapsed) {
+
+            sidebar.classList.add(
+                'collapsed'
+            );
+
+            mainContent.classList.add(
+                'expanded'
+            );
+
+        }
+
     }
 
-} else if (isMobile) {
+    toggle.addEventListener(
+        'click',
+        () => {
 
-    sidebar.classList.add(
-        'collapsed'
+            if (
+                window.innerWidth < 768
+            ) {
+                return;
+            }
+
+            sidebar.classList.toggle(
+                'collapsed'
+            );
+
+            mainContent.classList.toggle(
+                'expanded'
+            );
+
+            localStorage.setItem(
+                'sidebar-collapsed',
+                sidebar.classList.contains(
+                    'collapsed'
+                )
+            );
+
+        }
     );
-
-    mainContent.classList.add(
-        'expanded'
-    );
-
-}
-
-    toggle.addEventListener('click', () => {
-
-        sidebar.classList.toggle('collapsed');
-        mainContent.classList.toggle('expanded');
-
-        localStorage.setItem(
-            'sidebar-collapsed',
-            sidebar.classList.contains('collapsed')
-        );
-
-    });
 
 }
 
