@@ -136,9 +136,8 @@ function updateKpis(tips) {
     const profit =
         calculateTotalProfit(tips);
 
-const roi =
-    calculateROI(
-        window.appData.settings.initial_bankroll,
+const yieldValue =
+    calculateYield(
         tips
     );
 
@@ -178,10 +177,10 @@ const roi =
     ).textContent =
         formatCurrency(profit);
 
-    document.getElementById(
-        'roiKpi'
-    ).textContent =
-        `${roi.toFixed(2)}%`;
+document.getElementById(
+    'yieldKpi'
+).textContent =
+    `${yieldValue.toFixed(2)}%`;
 
     document.getElementById(
         'avgOddKpi'
@@ -221,11 +220,11 @@ document.getElementById(
         : 'var(--danger)';
 
 document.getElementById(
-    'roiKpi'
+    'yieldKpi'
 ).style.color =
-    roi >= 0
+    yieldValue >= 0
         ? 'var(--success)'
-        : 'var(--danger)';   
+        : 'var(--danger)';
 
     renderTable(tips);
 
