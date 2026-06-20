@@ -483,11 +483,17 @@ function renderDrawdownChart(
             tips
         );
 
+    const limitedHistory =
+    history.slice(-100);
+
+const limitedTips =
+    tips.slice(-100);
+
     let peak =
         window.appData.settings.initial_bankroll;
 
-    const drawdowns =
-        history.map(
+const drawdowns =
+    limitedHistory.map(
             item => {
 
                 peak =
@@ -521,14 +527,34 @@ function renderDrawdownChart(
 
                 data: {
 
-                    labels:
-                        history.map(
-                            (
-                                _,
-                                index
-                            ) =>
-                                index + 1
-                        ),
+         labels:
+    limitedTips.map(
+        (
+            bet,
+            index,
+            array
+        ) => {
+
+            const current =
+                formatDate(
+                    bet.date
+                );
+
+            const previous =
+                index > 0
+                    ? formatDate(
+                        array[
+                            index - 1
+                        ].date
+                    )
+                    : null;
+
+            return current === previous
+                ? ''
+                : current;
+
+        }
+    ),
 
                     datasets: [
 
