@@ -105,37 +105,37 @@ function updateMarketKpis(
         return;
     }
 
-const bestProfit =
-    [...stats]
-        .sort(
-            (a, b) =>
-                b.profit -
-                a.profit
-        )[0];
+    const bestProfit =
+        [...stats]
+            .sort(
+                (a, b) =>
+                    b.profit -
+                    a.profit
+            )[0];
 
-const bestYield =
-    [...stats]
-        .sort(
-            (a, b) =>
-                b.yield -
-                a.yield
-        )[0];
+    const bestYield =
+        [...stats]
+            .sort(
+                (a, b) =>
+                    b.yield -
+                    a.yield
+            )[0];
 
-const worstYield =
-    [...stats]
-        .sort(
-            (a, b) =>
-                a.yield -
-                b.yield
-        )[0];
+    const worstYield =
+        [...stats]
+            .sort(
+                (a, b) =>
+                    a.yield -
+                    b.yield
+            )[0];
 
-const bestROI =
-    [...stats]
-        .sort(
-            (a, b) =>
-                b.roi -
-                a.roi
-        )[0];
+    const bestROI =
+        [...stats]
+            .sort(
+                (a, b) =>
+                    b.roi -
+                    a.roi
+            )[0];
 
     const bestWinRate =
         [...stats]
@@ -150,86 +150,79 @@ const bestROI =
     ).textContent =
         stats.length;
 
-document.getElementById(
-    'bestMarketKpi'
-).textContent =
-    bestYield.market;
-
-document.getElementById(
-    'worstMarketKpi'
-).textContent =
-    worstYield.market;
-
-document.getElementById(
-    'highestProfitMarketKpi'
-).textContent =
-    formatCurrency(
-        bestProfit.profit
-    );
-
-document.getElementById(
-    'highestProfitMarketName'
-).textContent =
-    bestProfit.market;
-
-document.getElementById(
-    'highestRoiMarketKpi'
-).textContent =
-    `${bestROI.roi.toFixed(1)}%`;
-
-document.getElementById(
-    'highestRoiMarketName'
-).textContent =
-    bestROI.market;
-
-document.getElementById(
-    'highestWinRateMarketKpi'
-).textContent =
-    `${bestWinRate.winRate.toFixed(1)}%`;
-
-document.getElementById(
-    'highestWinRateMarketName'
-).textContent =
-    bestWinRate.market;
-
-document.getElementById(
-    'highestWinRateMarketName'
-).textContent =
-    bestWinRate.market;
+    document.getElementById(
+        'bestMarketKpi'
     ).textContent =
-        `${bestWinRate.market} (${bestWinRate.winRate.toFixed(1)}%)`;
+        bestYield.market;
+
+    document.getElementById(
+        'worstMarketKpi'
+    ).textContent =
+        worstYield.market;
+
+    document.getElementById(
+        'highestProfitMarketKpi'
+    ).textContent =
+        formatCurrency(
+            bestProfit.profit
+        );
+
+    document.getElementById(
+        'highestProfitMarketName'
+    ).textContent =
+        bestProfit.market;
+
+    document.getElementById(
+        'highestRoiMarketKpi'
+    ).textContent =
+        `${bestROI.roi.toFixed(1)}%`;
+
+    document.getElementById(
+        'highestRoiMarketName'
+    ).textContent =
+        bestROI.market;
+
+    document.getElementById(
+        'highestWinRateMarketKpi'
+    ).textContent =
+        `${bestWinRate.winRate.toFixed(1)}%`;
+
+    document.getElementById(
+        'highestWinRateMarketName'
+    ).textContent =
+        bestWinRate.market;
+
+    document.getElementById(
+        'marketsTrackedKpi'
+    ).style.color =
+        'var(--accent)';
+
+    document.getElementById(
+        'bestMarketKpi'
+    ).style.color =
+        'var(--accent)';
+
+    document.getElementById(
+        'worstMarketKpi'
+    ).style.color =
+        'var(--danger)';
+
+    document.getElementById(
+        'highestProfitMarketKpi'
+    ).style.color =
+        'var(--success)';
+
+    document.getElementById(
+        'highestRoiMarketKpi'
+    ).style.color =
+        'var(--success)';
+
+    document.getElementById(
+        'highestWinRateMarketKpi'
+    ).style.color =
+        'var(--accent)';
 
 }
-
-document.getElementById(
-    'marketsTrackedKpi'
-).style.color =
-    'var(--accent)';
-
-document.getElementById(
-    'bestMarketKpi'
-).style.color =
-    'var(--accent)';
-
-document.getElementById(
-    'worstMarketKpi'
-).style.color =
-    'var(--danger)';
-
-document.getElementById(
-    'highestProfitMarketKpi'
-).style.color =
-    'var(--success)';
-
-document.getElementById(
-    'highestRoiMarketKpi'
-).style.color =
-    'var(--success)';
-
-document.getElementById(
-    'highestWinRateMarketKpi'
-).style.color =
-    'var(--accent)';
 
 function renderMarketsTable(
     stats
