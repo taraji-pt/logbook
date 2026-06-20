@@ -34,6 +34,16 @@ if (
         initializeMercados();
 
     }
+
+    if (
+    window.location.pathname.endsWith(
+        'estatisticas.html'
+    )
+) {
+
+    initializeEstatisticas();
+
+}
     
 
 });
