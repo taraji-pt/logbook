@@ -363,15 +363,46 @@ function renderMonthlyPerformanceChart(
 
     });
 
-    const labels =
-        Object.keys(
-            monthlyData
-        );
+    const entries =
+    Object.entries(
+        monthlyData
+    )
+    .sort(
+        ([a], [b]) =>
+            a.localeCompare(b)
+    )
+    .slice(-12);
 
-    const values =
-        Object.values(
-            monthlyData
-        );
+const labels =
+    entries.map(
+        ([month]) => {
+
+            const [
+                year,
+                monthNumber
+            ] = month.split(
+                '-'
+            );
+
+            return new Date(
+                Number(year),
+                Number(monthNumber) - 1
+            ).toLocaleDateString(
+                'en-US',
+                {
+                    month: 'short',
+                    year: 'numeric'
+                }
+            );
+
+        }
+    );
+
+const values =
+    entries.map(
+        ([, value]) =>
+            value
+    );
 
     if (
         monthlyPerformanceChart
