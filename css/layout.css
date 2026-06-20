@@ -132,17 +132,7 @@
    RESPONSIVE
 ========================= */
 
-@media (max-width: 992px) {
 
-    .sidebar {
-        width: var(--sidebar-collapsed-width);
-    }
-
-    .main-content {
-        margin-left: var(--sidebar-collapsed-width);
-    }
-
-}
 
 @media (max-width: 768px) {
 
