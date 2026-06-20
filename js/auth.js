@@ -1,5 +1,8 @@
 const PASSWORD =
-    'login';
+    'lol';
+
+const AUTH_VERSION =
+    'v1';
 
 function checkAuth() {
 
@@ -8,8 +11,15 @@ function checkAuth() {
             'authenticated'
         );
 
+    const authVersion =
+        localStorage.getItem(
+            'authVersion'
+        );
+
     if (
-        !isAuthenticated
+        !isAuthenticated ||
+        authVersion !==
+            AUTH_VERSION
     ) {
 
         window.location.href =
@@ -41,6 +51,11 @@ function login() {
             'true'
         );
 
+        localStorage.setItem(
+            'authVersion',
+            AUTH_VERSION
+        );
+
         errorElement.textContent =
             '';
 
@@ -60,6 +75,10 @@ function logout() {
 
     localStorage.removeItem(
         'authenticated'
+    );
+
+    localStorage.removeItem(
+        'authVersion'
     );
 
     window.location.href =
