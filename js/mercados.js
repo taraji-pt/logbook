@@ -667,20 +667,28 @@ function renderMarketProfitChart(
 
                     datasets: [
 
-                        {
+    {
 
-                            label:
-                                'Profit',
+        label:
+            'Profit',
 
-                            data:
-                                sorted.map(
-                                    item =>
-                                        item.profit
-                                )
+        data:
+            sorted.map(
+                item =>
+                    item.profit
+            ),
 
-                        }
+        backgroundColor:
+            sorted.map(
+                item =>
+                    item.profit >= 0
+                        ? 'rgba(34,197,94,0.8)'
+                        : 'rgba(239,68,68,0.8)'
+            )
 
-                    ]
+    }
+
+]
 
                 },
 
@@ -792,23 +800,30 @@ function renderMarketYieldChart(
                                 item.market
                         ),
 
-                    datasets: [
+datasets: [
 
-                        {
+    {
 
-                            label:
-                                'Yield',
+        label:
+            'Yield',
 
-                            data:
-                                sorted.map(
-                                    item =>
-                                        item.yield
-                                )
+        data:
+            sorted.map(
+                item =>
+                    item.yield
+            ),
 
-                        }
+        backgroundColor:
+            sorted.map(
+                item =>
+                    item.yield >= 0
+                        ? 'rgba(34,197,94,0.8)'
+                        : 'rgba(239,68,68,0.8)'
+            )
 
-                    ]
+    }
 
+]
                 },
 
                 options: {
