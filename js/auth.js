@@ -1,5 +1,5 @@
 const PASSWORD =
-    'Teresinha2025*';
+    'login';
 
 function checkAuth() {
 
