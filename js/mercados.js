@@ -2,6 +2,12 @@ let currentMarketsPage = 1;
 
 const MARKETS_PER_PAGE = 10;
 
+let currentMarketsSortField =
+    'profit';
+
+let currentMarketsSortDirection =
+    'desc';
+
 function initializeMercados() {
 
     const tips =
@@ -237,13 +243,112 @@ function renderMarketsTable(
         return;
     }
 
-    const sortedStats =
-        [...stats]
-            .sort(
-                (a, b) =>
-                    b.profit -
-                    a.profit
+const sortedStats =
+    [...stats]
+        .sort((a, b) => {
+
+            let valueA;
+            let valueB;
+
+            switch (
+                currentMarketsSortField
+            ) {
+
+                case 'market':
+
+                    valueA =
+                        a.market;
+
+                    valueB =
+                        b.market;
+
+                    return currentMarketsSortDirection ===
+                        'asc'
+                        ? valueA.localeCompare(
+                            valueB
+                        )
+                        : valueB.localeCompare(
+                            valueA
+                        );
+
+                case 'bets':
+
+                    valueA =
+                        a.bets;
+
+                    valueB =
+                        b.bets;
+
+                    break;
+
+                case 'winRate':
+
+                    valueA =
+                        a.winRate;
+
+                    valueB =
+                        b.winRate;
+
+                    break;
+
+                case 'profit':
+
+                    valueA =
+                        a.profit;
+
+                    valueB =
+                        b.profit;
+
+                    break;
+
+                case 'roi':
+
+                    valueA =
+                        a.roi;
+
+                    valueB =
+                        b.roi;
+
+                    break;
+
+                case 'yield':
+
+                    valueA =
+                        a.yield;
+
+                    valueB =
+                        b.yield;
+
+                    break;
+
+                case 'avgOdd':
+
+                    valueA =
+                        a.avgOdd;
+
+                    valueB =
+                        b.avgOdd;
+
+                    break;
+
+            }
+
+            if (
+                currentMarketsSortDirection ===
+                'asc'
+            ) {
+
+                return (
+                    valueA - valueB
+                );
+
+            }
+
+            return (
+                valueB - valueA
             );
+
+        });
 
     const totalPages =
         Math.ceil(
@@ -269,13 +374,54 @@ function renderMarketsTable(
 
                 <tr>
 
-                    <th>Market</th>
-                    <th>Bets</th>
-                    <th>Win Rate</th>
-                    <th>Profit</th>
-                    <th>ROI</th>
-                    <th>Yield</th>
-                    <th>Avg Odd</th>
+<th
+    class="sortable"
+    onclick="handleMarketsSort('market')"
+>
+    Market${getMarketsSortIndicator('market')}
+</th>
+
+<th
+    class="sortable"
+    onclick="handleMarketsSort('bets')"
+>
+    Bets${getMarketsSortIndicator('bets')}
+</th>
+
+<th
+    class="sortable"
+    onclick="handleMarketsSort('winRate')"
+>
+    Win Rate${getMarketsSortIndicator('winRate')}
+</th>
+
+<th
+    class="sortable"
+    onclick="handleMarketsSort('profit')"
+>
+    Profit${getMarketsSortIndicator('profit')}
+</th>
+
+<th
+    class="sortable"
+    onclick="handleMarketsSort('roi')"
+>
+    ROI${getMarketsSortIndicator('roi')}
+</th>
+
+<th
+    class="sortable"
+    onclick="handleMarketsSort('yield')"
+>
+    Yield${getMarketsSortIndicator('yield')}
+</th>
+
+<th
+    class="sortable"
+    onclick="handleMarketsSort('avgOdd')"
+>
+    Avg Odd${getMarketsSortIndicator('avgOdd')}
+</th>
 
                 </tr>
 
@@ -411,5 +557,56 @@ function goToMarketsPage(
             window.appData.tips
         )
     );
+
+}
+
+function handleMarketsSort(
+    field
+) {
+
+    if (
+        currentMarketsSortField ===
+        field
+    ) {
+
+        currentMarketsSortDirection =
+            currentMarketsSortDirection ===
+            'asc'
+                ? 'desc'
+                : 'asc';
+
+    } else {
+
+        currentMarketsSortField =
+            field;
+
+        currentMarketsSortDirection =
+            'desc';
+
+    }
+
+    renderMarketsTable(
+        buildMarketStats(
+            window.appData.tips
+        )
+    );
+
+}
+
+function getMarketsSortIndicator(
+    field
+) {
+
+    if (
+        currentMarketsSortField !==
+        field
+    ) {
+        return ' ▲▼';
+    }
+
+    return currentMarketsSortDirection ===
+        'asc'
+            ? ' ▲'
+            : ' ▼';
 
 }
