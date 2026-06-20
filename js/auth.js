@@ -2,7 +2,7 @@ const PASSWORD =
     'lol';
 
 const AUTH_VERSION =
-    'v1';
+    'v2';
 
 function checkAuth() {
 
