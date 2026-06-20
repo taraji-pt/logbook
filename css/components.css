@@ -608,3 +608,31 @@
     margin-top: 24px;
 
 }
+
+.streak-win {
+
+    color: var(--success);
+
+}
+
+.streak-loss {
+
+    color: var(--danger);
+
+}
+
+.streak-neutral {
+
+    color: var(--text-muted);
+
+}
+
+#currentStreakKpi {
+
+    display: flex;
+
+    gap: 6px;
+
+    align-items: center;
+
+}
