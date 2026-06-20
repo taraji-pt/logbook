@@ -34,15 +34,39 @@ function initializeSidebar() {
         return;
     }
 
-    const isCollapsed =
-        localStorage.getItem('sidebar-collapsed') === 'true';
+const savedState =
+    localStorage.getItem(
+        'sidebar-collapsed'
+    );
 
-    if (isCollapsed) {
+const isMobile =
+    window.innerWidth < 768;
 
-        sidebar.classList.add('collapsed');
-        mainContent.classList.add('expanded');
+if (savedState !== null) {
+
+    if (savedState === 'true') {
+
+        sidebar.classList.add(
+            'collapsed'
+        );
+
+        mainContent.classList.add(
+            'expanded'
+        );
 
     }
+
+} else if (isMobile) {
+
+    sidebar.classList.add(
+        'collapsed'
+    );
+
+    mainContent.classList.add(
+        'expanded'
+    );
+
+}
 
     toggle.addEventListener('click', () => {
 
