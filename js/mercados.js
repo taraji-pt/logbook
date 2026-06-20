@@ -14,9 +14,19 @@ function initializeMercados() {
         window.appData.tips;
 
     const marketStats =
-        buildMarketStats(tips);
+        buildMarketStats(
+            tips
+        );
 
     updateMarketKpis(
+        marketStats
+    );
+
+    renderMarketProfitChart(
+        marketStats
+    );
+
+    renderMarketYieldChart(
         marketStats
     );
 
@@ -608,5 +618,259 @@ function getMarketsSortIndicator(
         'asc'
             ? ' ▲'
             : ' ▼';
+
+}
+
+let marketProfitChart;
+
+function renderMarketProfitChart(
+    stats
+) {
+
+    const canvas =
+        document.getElementById(
+            'marketProfitChart'
+        );
+
+    if (!canvas) {
+        return;
+    }
+
+    if (
+        marketProfitChart
+    ) {
+        marketProfitChart.destroy();
+    }
+
+    const sorted =
+        [...stats]
+            .sort(
+                (a, b) =>
+                    b.profit -
+                    a.profit
+            );
+
+    marketProfitChart =
+        new Chart(
+            canvas,
+            {
+
+                type: 'bar',
+
+                data: {
+
+                    labels:
+                        sorted.map(
+                            item =>
+                                item.market
+                        ),
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                'Profit',
+
+                            data:
+                                sorted.map(
+                                    item =>
+                                        item.profit
+                                )
+
+                        }
+
+                    ]
+
+                },
+
+                options: {
+
+                    responsive:
+                        true,
+
+                    indexAxis:
+                        'y',
+
+                    plugins: {
+
+                        legend: {
+                            display:
+                                false
+                        }
+
+                    },
+
+                    scales: {
+
+                        x: {
+
+                            ticks: {
+
+                                color:
+                                    '#9ca3af'
+
+                            },
+
+                            grid: {
+
+                                color:
+                                    'rgba(255,255,255,0.08)'
+
+                            }
+
+                        },
+
+                        y: {
+
+                            ticks: {
+
+                                color:
+                                    '#9ca3af'
+
+                            },
+
+                            grid: {
+
+                                display:
+                                    false
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+let marketYieldChart;
+
+function renderMarketYieldChart(
+    stats
+) {
+
+    const canvas =
+        document.getElementById(
+            'marketYieldChart'
+        );
+
+    if (!canvas) {
+        return;
+    }
+
+    if (
+        marketYieldChart
+    ) {
+        marketYieldChart.destroy();
+    }
+
+    const sorted =
+        [...stats]
+            .sort(
+                (a, b) =>
+                    b.yield -
+                    a.yield
+            );
+
+    marketYieldChart =
+        new Chart(
+            canvas,
+            {
+
+                type: 'bar',
+
+                data: {
+
+                    labels:
+                        sorted.map(
+                            item =>
+                                item.market
+                        ),
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                'Yield',
+
+                            data:
+                                sorted.map(
+                                    item =>
+                                        item.yield
+                                )
+
+                        }
+
+                    ]
+
+                },
+
+                options: {
+
+                    responsive:
+                        true,
+
+                    indexAxis:
+                        'y',
+
+                    plugins: {
+
+                        legend: {
+                            display:
+                                false
+                        }
+
+                    },
+
+                    scales: {
+
+                        x: {
+
+                            ticks: {
+
+                                color:
+                                    '#9ca3af'
+
+                            },
+
+                            grid: {
+
+                                color:
+                                    'rgba(255,255,255,0.08)'
+
+                            }
+
+                        },
+
+                        y: {
+
+                            ticks: {
+
+                                color:
+                                    '#9ca3af'
+
+                            },
+
+                            grid: {
+
+                                display:
+                                    false
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
 
 }
