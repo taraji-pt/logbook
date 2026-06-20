@@ -78,18 +78,47 @@ function updateStatisticsKpis(
     ).textContent =
         longestLossStreak;
 
-    document.getElementById(
-        'currentStreakKpi'
-    ).textContent =
-        currentStreak;
+document.getElementById(
+    'currentStreakKpi'
+).innerHTML =
+    currentStreak
+        .map(result => {
+
+            let className =
+                'streak-neutral';
+
+            if (
+                result === 'W'
+            ) {
+
+                className =
+                    'streak-win';
+
+            } else if (
+                result === 'L'
+            ) {
+
+                className =
+                    'streak-loss';
+
+            }
+
+            return `
+                <span
+                    class="${className}"
+                >
+                    ${result}
+                </span>
+            `;
+
+        })
+        .join('');
 
     document.getElementById(
-        'recoveryFactorKpi'
-    ).textContent =
-        recoveryFactor.toFixed(
-            2
-        );
-
+    'recoveryFactorKpi'
+).textContent =
+    `${recoveryFactor.toFixed(2)}x`;
+    
     document.getElementById(
         'currentDrawdownKpi'
     ).textContent =
@@ -114,14 +143,7 @@ function updateStatisticsKpis(
     ).style.color =
         'var(--danger)';
 
-    document.getElementById(
-        'currentStreakKpi'
-    ).style.color =
-        currentStreak.startsWith(
-            'W'
-        )
-            ? 'var(--success)'
-            : 'var(--danger)';
+   
 
     document.getElementById(
         'recoveryFactorKpi'
@@ -253,8 +275,7 @@ function calculateCurrentStreak(
 
             }
 
-        })
-        .join('');
+        });
 
 }
 
