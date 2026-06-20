@@ -109,6 +109,24 @@
 
     </script>
 
+<script>
+
+    if (
+        localStorage.getItem(
+            'authenticated'
+        ) &&
+        localStorage.getItem(
+            'authVersion'
+        ) === 'v1'
+    ) {
+
+        window.location.href =
+            'index.html';
+
+    }
+
+</script>
+    
 </body>
 
 </html>
