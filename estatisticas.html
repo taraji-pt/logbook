@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Estatísticas | Betting Logbook</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+
+            <header class="page-header">
+
+                <div class="page-title">
+
+                    <h1>Estatísticas</h1>
+
+                    <p>
+                        Consistência, risco e robustez da estratégia
+                    </p>
+
+                </div>
+
+            </header>
+
+            <div class="page-content">
+
+                <div class="kpi-grid">
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-label">
+                            Longest Win Streak
+                        </div>
+
+                        <div
+                            id="longestWinStreakKpi"
+                            class="kpi-value"
+                        >
+                            -
+                        </div>
+
+                        <div class="table-subtitle">
+                            Most consecutive winning bets
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-label">
+                            Longest Loss Streak
+                        </div>
+
+                        <div
+                            id="longestLossStreakKpi"
+                            class="kpi-value"
+                        >
+                            -
+                        </div>
+
+                        <div class="table-subtitle">
+                            Most consecutive losing bets
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-label">
+                            Current Streak
+                        </div>
+
+                        <div
+                            id="currentStreakKpi"
+                            class="kpi-value"
+                        >
+                            -
+                        </div>
+
+                        <div class="table-subtitle">
+                            Current sequence of results
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-label">
+                            Recovery Factor
+                        </div>
+
+                        <div
+                            id="recoveryFactorKpi"
+                            class="kpi-value"
+                        >
+                            -
+                        </div>
+
+                        <div class="table-subtitle">
+                            Profit divided by max drawdown
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-label">
+                            Current Drawdown
+                        </div>
+
+                        <div
+                            id="currentDrawdownKpi"
+                            class="kpi-value"
+                        >
+                            -
+                        </div>
+
+                        <div class="table-subtitle">
+                            Distance from bankroll peak
+                        </div>
+
+                    </div>
+
+                    <div class="kpi-card">
+
+                        <div class="kpi-label">
+                            Max Drawdown
+                        </div>
+
+                        <div
+                            id="maxDrawdownKpi"
+                            class="kpi-value"
+                        >
+                            -
+                        </div>
+
+                        <div class="table-subtitle">
+                            Largest historical bankroll decline
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="markets-charts-grid">
+
+                    <section class="chart-card">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <div class="panel-title">
+                                    Monthly Performance
+                                </div>
+
+                                <div class="panel-description">
+                                    How much profit was generated each month?
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="chart-container">
+
+                            <canvas
+                                id="monthlyPerformanceChart"
+                            ></canvas>
+
+                        </div>
+
+                    </section>
+
+                    <section class="chart-card">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <div class="panel-title">
+                                    Drawdown Analysis
+                                </div>
+
+                                <div class="panel-description">
+                                    How far the bankroll moved below its previous peak.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="chart-container">
+
+                            <canvas
+                                id="drawdownChart"
+                            ></canvas>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/calculations.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="js/estatisticas.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
