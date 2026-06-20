@@ -596,3 +596,15 @@
     margin-bottom: 40px;
 
 }
+
+#marketsPaginationContainer {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 24px;
+
+}
