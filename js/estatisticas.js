@@ -721,20 +721,60 @@ function renderBettingGeographyMap(
 
     });
 
-    const values = {};
-
-    Object.entries(
+ const profits =
+    Object.values(
         countryStats
-    ).forEach(
-        ([country, data]) => {
+    ).map(
+        item =>
+            item.profit
+    );
+
+const minProfit =
+    Math.min(
+        ...profits
+    );
+
+const maxProfit =
+    Math.max(
+        ...profits
+    );
+
+const values = {};
+
+Object.entries(
+    countryStats
+).forEach(
+    ([country, data]) => {
+
+        if (
+            maxProfit ===
+            minProfit
+        ) {
 
             values[
                 country
-            ] =
-                data.profit;
+            ] = 0;
+
+            return;
 
         }
-    );
+
+        values[
+            country
+        ] =
+            (
+                (
+                    data.profit -
+                    minProfit
+                ) /
+                (
+                    maxProfit -
+                    minProfit
+                )
+            ) * 2 - 1;
+
+    }
+);
 
     if (
         geographyMap
@@ -770,29 +810,30 @@ function renderBettingGeographyMap(
 
             },
 
-            series: {
+series: {
 
-                regions: [
+    regions: [
 
-                    {
+        {
 
-                        values,
+            values,
 
-                        scale: [
+            scale: {
 
-                            '#ef4444',
-                            '#2a2f3a',
-                            '#22c55e'
-                        ],
-
-                        normalizeFunction:
-                            'polynomial'
-
-                    }
-
-                ]
+                '-1': '#ef4444',
+                '0': '#2a2f3a',
+                '1': '#22c55e'
 
             },
+
+            normalizeFunction:
+                'linear'
+
+        }
+
+    ]
+
+},
 
             onRegionTooltipShow:
                 (
