@@ -721,60 +721,75 @@ function renderBettingGeographyMap(
 
     });
 
- const profits =
-    Object.values(
+    const values = {};
+
+    const profits =
+        Object.values(
+            countryStats
+        ).map(
+            item =>
+                item.profit
+        );
+
+    const highestProfit =
+        Math.max(
+            ...profits
+        );
+
+    const lowestProfit =
+        Math.min(
+            ...profits
+        );
+
+    Object.entries(
         countryStats
-    ).map(
-        item =>
-            item.profit
-    );
+    ).forEach(
+        ([country, data]) => {
 
-const minProfit =
-    Math.min(
-        ...profits
-    );
+            if (
+                data.profit ===
+                highestProfit
+            ) {
 
-const maxProfit =
-    Math.max(
-        ...profits
-    );
+                values[
+                    country
+                ] = 2;
 
-const values = {};
+            } else if (
+                data.profit ===
+                lowestProfit
+            ) {
 
-Object.entries(
-    countryStats
-).forEach(
-    ([country, data]) => {
+                values[
+                    country
+                ] = -2;
 
-        if (
-            maxProfit ===
-            minProfit
-        ) {
+            } else if (
+                data.profit > 0
+            ) {
 
-            values[
-                country
-            ] = 0;
+                values[
+                    country
+                ] = 1;
 
-            return;
+            } else if (
+                data.profit < 0
+            ) {
+
+                values[
+                    country
+                ] = -1;
+
+            } else {
+
+                values[
+                    country
+                ] = 0;
+
+            }
 
         }
-
-        values[
-            country
-        ] =
-            (
-                (
-                    data.profit -
-                    minProfit
-                ) /
-                (
-                    maxProfit -
-                    minProfit
-                )
-            ) * 2 - 1;
-
-    }
-);
+    );
 
     if (
         geographyMap
@@ -810,30 +825,38 @@ Object.entries(
 
             },
 
-series: {
+            series: {
 
-    regions: [
+                regions: [
 
-        {
+                    {
 
-            values,
+                        values,
 
-            scale: {
+                        scale: {
 
-                '-1': '#ef4444',
-                '0': '#2a2f3a',
-                '1': '#22c55e'
+                            '-2':
+                                '#ef4444',
+
+                            '-1':
+                                '#f87171',
+
+                            '0':
+                                '#2a2f3a',
+
+                            '1':
+                                '#4ade80',
+
+                            '2':
+                                '#22c55e'
+
+                        }
+
+                    }
+
+                ]
 
             },
-
-            normalizeFunction:
-                'linear'
-
-        }
-
-    ]
-
-},
 
             onRegionTooltipShow:
                 (
@@ -844,31 +867,55 @@ series: {
 
                     const stats =
                         countryStats[
-                            code
+                            code.toUpperCase()
                         ];
 
                     if (
                         !stats
                     ) {
 
-                        tooltip.text(
-                            `${tooltip.text()}
-                            
-No bets`
+                        tooltip.html(
+                            `
+                            <div>
+                                <span class="fi fi-${code.toLowerCase()}"></span>
+                                &nbsp;
+                                ${tooltip.text()}
+                                <br><br>
+                                No bets
+                            </div>
+                            `
                         );
 
                         return;
 
                     }
 
-                    tooltip.text(
-                        `${tooltip.text()}
+                    tooltip.html(
+                        `
+                        <div>
 
-Bets: ${stats.bets}
+                            <span class="fi fi-${code.toLowerCase()}"></span>
 
-Profit: ${formatCurrency(
-                            stats.profit
-                        )}`
+                            &nbsp;
+
+                            <strong>
+                                ${tooltip.text()}
+                            </strong>
+
+                            <br><br>
+
+                            Bets:
+                            ${stats.bets}
+
+                            <br>
+
+                            Profit:
+                            ${formatCurrency(
+                                stats.profit
+                            )}
+
+                        </div>
+                        `
                     );
 
                 }
