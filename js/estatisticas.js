@@ -919,66 +919,7 @@ onRegionTooltipShow:
 
     }
 
-onRegionTooltipShow:
-    (
-        event,
-        tooltip,
-        code
-    ) => {
 
-        const stats =
-            countryStats[
-                code.toUpperCase()
-            ];
-
-        const flag =
-            `<span class="fi fi-${code.toLowerCase()}"></span>`;
-
-        if (
-            !stats
-        ) {
-
-            tooltip._tooltip.innerHTML =
-                `
-                ${flag}
-                &nbsp;
-                <strong>
-                    ${tooltip.text()}
-                </strong>
-
-                <br><br>
-
-                No bets
-                `;
-
-            return;
-
-        }
-
-        tooltip._tooltip.innerHTML =
-            `
-            ${flag}
-
-            &nbsp;
-
-            <strong>
-                ${tooltip.text()}
-            </strong>
-
-            <br><br>
-
-            Bets:
-            ${stats.bets}
-
-            <br>
-
-            Profit:
-            ${formatCurrency(
-                stats.profit
-            )}
-            `;
-
-    }
 
         });
 
