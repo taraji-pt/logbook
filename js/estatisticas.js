@@ -858,12 +858,43 @@ function renderBettingGeographyMap(
 
             },
 
-            onRegionTooltipShow:
-                (
-                    event,
-                    tooltip,
-                    code
-                ) => {
+onRegionTooltipShow:
+    (
+        event,
+        tooltip,
+        code
+    ) => {
+
+        const stats =
+            countryStats[
+                code.toUpperCase()
+            ];
+
+        if (
+            !stats
+        ) {
+
+            tooltip.text(
+                `${tooltip.text()}
+
+No bets`
+            );
+
+            return;
+
+        }
+
+        tooltip.text(
+            `${tooltip.text()}
+
+Bets: ${stats.bets}
+
+Profit: ${formatCurrency(
+                stats.profit
+            )}`
+        );
+
+    }
 
                     const stats =
                         countryStats[
