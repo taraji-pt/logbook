@@ -817,19 +817,27 @@
 .jvm-tooltip {
 
     background:
-        var(--surface) !important;
+        #1f2937 !important;
+
+    opacity:
+        1 !important;
 
     border:
-        1px solid
-        var(--border) !important;
+        1px solid var(--border) !important;
 
     color:
         var(--text) !important;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    padding: 10px 12px;
+    padding:
+        10px 12px;
 
-    border-radius: 8px;
+    border-radius:
+        8px;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.35);
 
 }
