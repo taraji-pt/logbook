@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt">
 
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css"
+>
+    
 <head>
 
     <meta charset="UTF-8">
@@ -223,6 +228,33 @@
 
                     </section>
 
+<section class="chart-card">
+
+    <div class="panel-header">
+
+        <div>
+
+            <div class="panel-title">
+                Betting Geography
+            </div>
+
+            <div class="table-subtitle">
+                Which countries are associated with my best results?
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        id="bettingGeographyMap"
+        style="
+            height: 420px;
+        "
+    ></div>
+
+</section>
+                    
                 </div>
 
             </div>
@@ -231,6 +263,9 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
+    
     <script src="js/sidebar.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/api.js"></script>
