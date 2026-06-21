@@ -1,6 +1,7 @@
 
 let monthlyPerformanceChart;
 let drawdownChart;
+let geographyMap;
 
 function initializeEstatisticas() {
 
@@ -23,6 +24,10 @@ function initializeEstatisticas() {
     renderDrawdownChart(
         tips
     );
+
+    renderBettingGeographyMap(
+    tips
+);
 
 }
 
@@ -596,5 +601,237 @@ const drawdowns =
 
             }
         );
+
+}
+
+function renderBettingGeographyMap(
+    tips
+) {
+
+    const container =
+        document.getElementById(
+            'bettingGeographyMap'
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const countryStats = {};
+
+    tips.forEach(bet => {
+
+        const home =
+            (
+                bet.home_code ||
+                ''
+            )
+            .toUpperCase();
+
+        const away =
+            (
+                bet.away_code ||
+                ''
+            )
+            .toUpperCase();
+
+        const profit =
+            calculateProfit(
+                bet
+            );
+
+        if (
+            !home ||
+            !away
+        ) {
+            return;
+        }
+
+        if (
+            home === away
+        ) {
+
+            if (
+                !countryStats[
+                    home
+                ]
+            ) {
+
+                countryStats[
+                    home
+                ] = {
+
+                    bets: 0,
+
+                    profit: 0
+
+                };
+
+            }
+
+            countryStats[
+                home
+            ].bets++;
+
+            countryStats[
+                home
+            ].profit +=
+                profit;
+
+        } else {
+
+            const splitProfit =
+                profit / 2;
+
+            [home, away]
+                .forEach(
+                    country => {
+
+                        if (
+                            !countryStats[
+                                country
+                            ]
+                        ) {
+
+                            countryStats[
+                                country
+                            ] = {
+
+                                bets: 0,
+
+                                profit: 0
+
+                            };
+
+                        }
+
+                        countryStats[
+                            country
+                        ].bets++;
+
+                        countryStats[
+                            country
+                        ].profit +=
+                            splitProfit;
+
+                    }
+                );
+
+        }
+
+    });
+
+    const values = {};
+
+    Object.entries(
+        countryStats
+    ).forEach(
+        ([country, data]) => {
+
+            values[
+                country
+            ] =
+                data.profit;
+
+        }
+    );
+
+    if (
+        geographyMap
+    ) {
+
+        geographyMap.destroy();
+
+    }
+
+    geographyMap =
+        new jsVectorMap({
+
+            selector:
+                '#bettingGeographyMap',
+
+            map:
+                'world',
+
+            zoomButtons:
+                false,
+
+            regionStyle: {
+
+                initial: {
+
+                    fill:
+                        '#2a2f3a',
+
+                    stroke:
+                        '#161b22'
+
+                }
+
+            },
+
+            series: {
+
+                regions: [
+
+                    {
+
+                        values,
+
+                        scale: [
+
+                            '#ef4444',
+                            '#2a2f3a',
+                            '#22c55e'
+                        ],
+
+                        normalizeFunction:
+                            'polynomial'
+
+                    }
+
+                ]
+
+            },
+
+            onRegionTooltipShow:
+                (
+                    event,
+                    tooltip,
+                    code
+                ) => {
+
+                    const stats =
+                        countryStats[
+                            code
+                        ];
+
+                    if (
+                        !stats
+                    ) {
+
+                        tooltip.text(
+                            `${tooltip.text()}
+                            
+No bets`
+                        );
+
+                        return;
+
+                    }
+
+                    tooltip.text(
+                        `${tooltip.text()}
+
+Bets: ${stats.bets}
+
+Profit: ${formatCurrency(
+                            stats.profit
+                        )}`
+                    );
+
+                }
+
+        });
 
 }
