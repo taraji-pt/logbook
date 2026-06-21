@@ -835,20 +835,20 @@ function renderBettingGeographyMap(
 
                         scale: {
 
-                            '-2':
-                                '#ef4444',
+                             '-2':
+        '#ef4444',
 
-                            '-1':
-                                '#f87171',
+    '-1':
+        '#fca5a5',
 
-                            '0':
-                                '#2a2f3a',
+    '0':
+        '#2a2f3a',
 
-                            '1':
-                                '#4ade80',
+    '1':
+        '#86efac',
 
-                            '2':
-                                '#22c55e'
+    '2':
+        '#22c55e'
 
                         }
 
@@ -870,29 +870,52 @@ onRegionTooltipShow:
                 code.toUpperCase()
             ];
 
+        const flag =
+            `<span class="fi fi-${code.toLowerCase()}"></span>`;
+
         if (
             !stats
         ) {
 
-            tooltip.text(
-                `${tooltip.text()}
+            tooltip._tooltip.innerHTML =
+                `
+                ${flag}
+                &nbsp;
+                <strong>
+                    ${tooltip.text()}
+                </strong>
 
-No bets`
-            );
+                <br><br>
+
+                No bets
+                `;
 
             return;
 
         }
 
-        tooltip.text(
-            `${tooltip.text()}
+        tooltip._tooltip.innerHTML =
+            `
+            ${flag}
 
-Bets: ${stats.bets}
+            &nbsp;
 
-Profit: ${formatCurrency(
+            <strong>
+                ${tooltip.text()}
+            </strong>
+
+            <br><br>
+
+            Bets:
+            ${stats.bets}
+
+            <br>
+
+            Profit:
+            ${formatCurrency(
                 stats.profit
-            )}`
-        );
+            )}
+            `;
 
     }
 
