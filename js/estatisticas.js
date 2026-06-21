@@ -532,33 +532,12 @@ const drawdowns =
 
                 data: {
 
-         labels:
+ labels:
     limitedTips.map(
-        (
-            bet,
-            index,
-            array
-        ) => {
-
-            const current =
-                formatDate(
-                    bet.date
-                );
-
-            const previous =
-                index > 0
-                    ? formatDate(
-                        array[
-                            index - 1
-                        ].date
-                    )
-                    : null;
-
-            return current === previous
-                ? ''
-                : current;
-
-        }
+        bet =>
+            formatDate(
+                bet.date
+            )
     ),
 
                     datasets: [
@@ -587,6 +566,21 @@ const drawdowns =
 
                     responsive:
                         true,
+
+                    scales: {
+
+        x: {
+
+            ticks: {
+
+                maxTicksLimit:
+                    12
+
+            }
+
+        }
+
+    },
 
                     plugins: {
 
