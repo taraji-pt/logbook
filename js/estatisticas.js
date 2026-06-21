@@ -919,60 +919,66 @@ onRegionTooltipShow:
 
     }
 
-                    const stats =
-                        countryStats[
-                            code.toUpperCase()
-                        ];
+onRegionTooltipShow:
+    (
+        event,
+        tooltip,
+        code
+    ) => {
 
-                    if (
-                        !stats
-                    ) {
+        const stats =
+            countryStats[
+                code.toUpperCase()
+            ];
 
-                        tooltip.html(
-                            `
-                            <div>
-                                <span class="fi fi-${code.toLowerCase()}"></span>
-                                &nbsp;
-                                ${tooltip.text()}
-                                <br><br>
-                                No bets
-                            </div>
-                            `
-                        );
+        const flag =
+            `<span class="fi fi-${code.toLowerCase()}"></span>`;
 
-                        return;
+        if (
+            !stats
+        ) {
 
-                    }
+            tooltip._tooltip.innerHTML =
+                `
+                ${flag}
+                &nbsp;
+                <strong>
+                    ${tooltip.text()}
+                </strong>
 
-                    tooltip.html(
-                        `
-                        <div>
+                <br><br>
 
-                            <span class="fi fi-${code.toLowerCase()}"></span>
+                No bets
+                `;
 
-                            &nbsp;
+            return;
 
-                            <strong>
-                                ${tooltip.text()}
-                            </strong>
+        }
 
-                            <br><br>
+        tooltip._tooltip.innerHTML =
+            `
+            ${flag}
 
-                            Bets:
-                            ${stats.bets}
+            &nbsp;
 
-                            <br>
+            <strong>
+                ${tooltip.text()}
+            </strong>
 
-                            Profit:
-                            ${formatCurrency(
-                                stats.profit
-                            )}
+            <br><br>
 
-                        </div>
-                        `
-                    );
+            Bets:
+            ${stats.bets}
 
-                }
+            <br>
+
+            Profit:
+            ${formatCurrency(
+                stats.profit
+            )}
+            `;
+
+    }
 
         });
 
