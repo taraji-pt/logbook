@@ -46,7 +46,8 @@
     --space-xl: 32px;
 
     /* Typography */
-    --font-family: 'Space Grotesk', sans-serif;
+    --font-family: 'Inter', sans-serif;
+    --font-heading: 'Manrope', sans-serif;
 
 }
 
@@ -76,6 +77,7 @@ body {
     font-family: var(--font-family);
     min-height: 100vh;
     line-height: 1.5;
+    font-variant-numeric: tabular-nums;
 }
 
 
@@ -84,18 +86,21 @@ body {
 ========================= */
 
 h1 {
+    font-family: var(--font-heading);
     font-size: 28px;
     font-weight: 700;
     letter-spacing: -0.03em;
 }
 
 h2 {
+    font-family: var(--font-heading);
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.02em;
 }
 
 h3 {
+    font-family: var(--font-heading);
     font-size: 17px;
     font-weight: 600;
 }
