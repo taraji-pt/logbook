@@ -611,23 +611,24 @@ function renderBettingGeographyMap(
         return;
     }
 
+    // Team/nation codes such as GB-ENG, GB-SCT, GB-WLS and GB-NIR
+    // must be aggregated under the single GB region used by the world map.
+    const normalizeMapCountryCode = code => {
+        const normalizedCode = String(code || '').trim().toUpperCase();
+
+        if (normalizedCode.startsWith('GB-')) {
+            return 'GB';
+        }
+
+        return normalizedCode;
+    };
+
     const countryStats = {};
 
     tips.forEach(bet => {
 
-        const home =
-            (
-                bet.home_code ||
-                ''
-            )
-            .toUpperCase();
-
-        const away =
-            (
-                bet.away_code ||
-                ''
-            )
-            .toUpperCase();
+        const home = normalizeMapCountryCode(bet.home_code);
+        const away = normalizeMapCountryCode(bet.away_code);
 
         const profit =
             calculateProfit(
@@ -859,13 +860,15 @@ onRegionTooltipShow:
         code
     ) => {
 
+        // Map region codes are canonical country codes (GB for United Kingdom).
+        const mapCountryCode = normalizeMapCountryCode(code);
         const stats =
             countryStats[
-                code.toUpperCase()
+                mapCountryCode
             ];
 
         const flag =
-            `<span class="fi fi-${code.toLowerCase()}"></span>`;
+            `<span class="fi fi-${mapCountryCode.toLowerCase()}"></span>`;
 
         if (
             !stats
