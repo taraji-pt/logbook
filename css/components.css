@@ -23,6 +23,7 @@
 }
 
 .panel-title {
+    font-family: var(--font-heading);
     font-size: 15px;
     font-weight: 600;
 }
@@ -64,6 +65,8 @@
 }
 
 .kpi-value {
+    font-family: var(--font-heading);
+    font-variant-numeric: tabular-nums;
     font-size: 30px;
     font-weight: 700;
     line-height: 1;
